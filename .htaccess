@@ -1,0 +1,7 @@
+Options -MultiViews
+RewriteEngine On
+
+# Redirigir todas las solicitudes a archivos sin una extensión a su equivalente con la extensión
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
