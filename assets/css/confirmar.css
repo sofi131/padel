@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://padelmagazine.fr/wp-content/uploads/2023/04/Raquette-padel-balles.jpeg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Cambia el color del fondo y ajusta la opacidad */
+    z-index: 1;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Ajusta la sombra */
+    text-align: center;
+}
+
+h2 {
+    color: #fff; /* Cambia el color del texto a blanco */
+    margin-bottom: 20px;
+}
+
+p {
+    color: #eee; /* Cambia el color del texto a un gris más claro */
+    line-height: 1.6;
+}
+header {
+    position: absolute;
+    top: 20px;
+}
