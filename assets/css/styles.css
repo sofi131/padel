@@ -1,0 +1,25 @@
+/* Estilo para el jumbotron con imagen de fondo y superposición verde */
+.jumbotron {
+    position: relative;
+    background-image: url('assets/img/cover.jpg'); /* Imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    color: white; /* Texto blanco */
+    padding: 80px 20px;
+}
+        
+/* Superposición verde con opacidad */
+.jumbotron .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(202, 208, 33, 0.6); /* Verde con opacidad */
+}
+
+/* Texto para que sea visible por encima de la superposición */
+.jumbotron .content {
+    position: relative; /* Para que el contenido esté por encima de la superposición */
+    z-index: 1;
+}

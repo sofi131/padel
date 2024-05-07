@@ -16,6 +16,7 @@ $results = $query->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Padel App</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/styles.css" rel="stylesheet"> <!-- Vínculo al archivo CSS externo -->
 </head>
 <body>
 
@@ -54,9 +55,12 @@ $results = $query->fetchAll(PDO::FETCH_ASSOC);
 </nav>
 
 <!-- Jumbotron para el título centralizado -->
-<div class="jumbotron text-center" style="background-color: #CAD021; color: white; padding: 80px 20px;">
-    <h1>Would you like to play <i>Padel</i>?</h1>
-    <p class="lead">Experience the best courts and matches in the city.</p>
+<div class="jumbotron text-center">
+    <div class="overlay"></div> <!-- Superposición verde con opacidad -->
+    <div class="content"> <!-- Texto del jumbotron -->
+        <h1>Would you like to play <i>Padel</i>?</h1>
+        <p class="lead">Experience the best courts and matches in the city.</p>
+    </div>
 </div>
 
 <!-- Tarjetas para las canchas -->
