@@ -81,7 +81,7 @@ $pistas = $stm->fetchAll(PDO::FETCH_ASSOC);
         <?php
         foreach ($pistas as $pista) {
             echo '<div class="pista">
-            <img src="' . $pista["imagen"] . '" alt="Imagen de la pista">
+            <img src="' . $pista["img"] . '" alt="Imagen de la pista">
             <p>' . $pista["name"] . '</p>
             <form action="reserva" method="post">
             <input type="hidden" name="idpista" value="' . $pista["idcourt"] . '">
@@ -98,5 +98,7 @@ $pistas = $stm->fetchAll(PDO::FETCH_ASSOC);
         <button type="submit"></button>
     </form>
 </body>
+
+<a href="partidas">PARTIDAS</a>
 
 </html>
