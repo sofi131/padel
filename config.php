@@ -7,7 +7,7 @@ define( 'DB_NAME', 'padel' );
 define( 'DB_USER', 'root' );
 
 /** Database password */
-define( 'DB_PASSWORD', '' );
+define( 'DB_PASSWORD', '1234' );
 
 /** Database hostname */
 define( 'DB_HOST', 'localhost' );
