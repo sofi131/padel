@@ -8,7 +8,7 @@ $query = $conn->prepare($sql);
 $query->execute();
 $results = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
+<!--parte bonita-->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -57,8 +57,8 @@ $results = $query->fetchAll(PDO::FETCH_ASSOC);
         <div class="jumbotron text-center">
             <div class="overlay"></div>
             <div class="content">
-                <h1>Would you like to play <i>Padel</i>?</h1>
-                <p class="lead" style="font-weight: bold;">Experience the best courts and matches in the city.</p>
+                <h1>¿Te gustaría jugar al <i>Padel</i>?</h1>
+                <p class="lead" style="font-weight: bold;">Experiencia las mejores pistas de toda Galicia.</p>
             </div>
         </div>
 
