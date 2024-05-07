@@ -11,7 +11,7 @@ if (isset($_POST["username"])) {
     $stm->bindParam(2, $password);
     $stm->execute();
     if ($stm->rowCount() > 0) {
-        $row = $stm->fetchAll(PDO::FETCH_ASSOC);
+        $row = $stm->fetch(PDO::FETCH_ASSOC);
         $iduser = $row["iduser"];
         $_SESSION["iduser"] = $iduser;
         $_SESSION["username"] = $username;
@@ -25,7 +25,7 @@ if (isset($_POST["username"])) {
 
 
 //Funcion de registro
-if (isset($_POST["username"])) {
+/*if (isset($_POST["username"])) {
     $username = $_POST["username"];
     $email = $_POST["email"];
     $password = $_POST["password"];
@@ -43,7 +43,7 @@ if (isset($_POST["username"])) {
 } else {
     $error = "No hay datos para enviar";
 }
-
+*/
 //para mostrar el error <?phpif(isset($error)){echo $error;} "cierra el archivo php"
 
 //Funcion para traer pistas
@@ -91,6 +91,12 @@ $pistas = $stm->fetchAll(PDO::FETCH_ASSOC);
         }
         ?>
     </div>
+
+    <form action="" method="post">
+        <input type="text" name="username">
+        <input type="text" name="password">
+        <button type="submit"></button>
+    </form>
 </body>
 
 </html>

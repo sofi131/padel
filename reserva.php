@@ -1,6 +1,7 @@
 <?php
 include 'conexion.php';
 session_start();
+var_dump($_SESSION['iduser']);
 $iduser= $_SESSION["iduser"];
 //traer horas de la base de datos
 $sql = "select * from timetable";
@@ -8,7 +9,9 @@ $stm = $conn->prepare($sql);
 $stm->execute();
 $result = $stm->fetchAll(PDO::FETCH_ASSOC);
 
-
+if(isset($_POST["idpista"])){
+    $_SESSION["idpista"]=$_POST["idpista"];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,13 +22,6 @@ $result = $stm->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <h1>reserva</h1>
-    <?php
-    if(isset($_POST["idpista"])){
-        $_SESSION["idpista"]=$_POST["idpista"];
-        echo "el id de la pista es ".$_POST["idpista"];
-    }
-    ?>
-
 <form action="players" method="post">
     <div>
         <label for="fecha">Fecha:</label>
