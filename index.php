@@ -20,11 +20,10 @@ $results = $query->fetchAll(PDO::FETCH_ASSOC);
 <body>
 
 <!-- Barra de Navegación -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top"> <!-- Navbar oscuro -->
-    <a class="navbar-brand" href="/">
-        <!-- Imagen de pelota más grande -->
-        <img src="https://assets-global.website-files.com/6127fb2c77e53513fea9657c/612d38df9b48bca5bd62f48b_padel-tech-logo.png" alt="Logo" width="200" height=auto> <!-- Ajuste del tamaño del logo -->
-        Padel App
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top"> <!-- Navbar blanco -->
+    <a class="navbar-brand d-flex align-items-center" href="/"> <!-- Clase para alinear el logo y el texto -->
+        <!-- Imagen de pelota -->
+        <img src="https://assets-global.website-files.com/6127fb2c77e53513fea9657c/612d38df9b48bca5bd62f48b_padel-tech-logo.png" alt="Logo" width="200" height="auto" class="me-2"> <!-- Tamaño de la pelota -->
     </a>
 
     <!-- Botón para dispositivos móviles -->
