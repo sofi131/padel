@@ -32,20 +32,17 @@ $results = $query->fetchAll(PDO::FETCH_ASSOC);
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Inicio</a>
+                    <a class="nav-link" href="players.php">Players</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/players">Players</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">Reservas</a>
+                <a class="nav-link" href="reservas.php">Reservas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Usuario</a>
+                <a class="nav-link" href="usuario.php">Usuario</a>
             </li>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contacto</a>
+                    <a class="nav-link" href="contacto.php">Contacto</a>
                 </li>
             </ul>
         </div>
