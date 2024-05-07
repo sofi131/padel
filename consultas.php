@@ -25,7 +25,7 @@ if (isset($_POST["username"])) {
 
 
 //Funcion de registro
-/*if (isset($_POST["username"])) {
+if (isset($_POST["username"])) {
     $username = $_POST["username"];
     $email = $_POST["email"];
     $password = $_POST["password"];
@@ -43,7 +43,7 @@ if (isset($_POST["username"])) {
 } else {
     $error = "No hay datos para enviar";
 }
-*/
+
 //para mostrar el error <?phpif(isset($error)){echo $error;} "cierra el archivo php"
 
 //Funcion para traer pistas
