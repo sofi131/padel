@@ -6,15 +6,12 @@ $iduser = $_SESSION["iduser"];
 //traer horas de la base de datos
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     // Verificar si se recibió la fecha oculta
-    if (isset($_GET["fecha_oculta"])) {
+    if (isset($_GET["fecha_selecionada"])) {
         // Obtener la fecha recibida
-        $fecha = $_GET["fecha_oculta"];
-        echo "Fecha recibida: " . $fecha;
-    } else {
-        echo "Error: No se recibió la fecha.";
-    }
+        $fecha_seleccionada = $_GET["fecha_selecionada"];
+    } 
 }
-$fecha_seleccionada = isset($_GET["fecha_oculta"]) ? $_GET["fecha_oculta"] : date('Y-m-d');
+$fecha_seleccionada = isset($_GET["fecha_selecionada"]) ? $_GET["fecha_selecionada"] : date('Y-m-d');
 
 // Formatear la fecha en el formato adecuado "yyyy-MM-dd"
 $fecha_formateada = date('Y-m-d', strtotime($fecha_seleccionada));
@@ -66,7 +63,7 @@ if (isset($_POST["idpista"])) {
 
     </form>
     <form id="formulario" method="get" action="">
-        <input type="hidden" id="fecha_oculta" name="fecha_oculta">
+        <input type="hidden" id="fecha_selecionada" name="fecha_selecionada">
     </form>
     <script>
         // Obtener el elemento de entrada de fecha
@@ -79,10 +76,9 @@ if (isset($_POST["idpista"])) {
         fechaInput.addEventListener("change", function() {
             // Obtener el valor seleccionado (la fecha)
             var fechaSeleccionada = fechaInput.value;
-            console.log("Fecha seleccionada:", fechaSeleccionada);
 
             // Asignar la fecha al campo oculto del formulario
-            document.getElementById("fecha_oculta").value = fechaSeleccionada;
+            document.getElementById("fecha_selecionada").value = fechaSeleccionada;
 
             // Enviar el formulario
             document.getElementById("formulario").submit();
