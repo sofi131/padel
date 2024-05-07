@@ -20,31 +20,42 @@ $results = $query->fetchAll(PDO::FETCH_ASSOC);
 <body>
 
 <!-- Barra de Navegación -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Padel App</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top"> <!-- Navbar oscuro -->
+    <a class="navbar-brand" href="/">
+        <!-- Imagen de pelota más grande -->
+        <img src="https://assets-global.website-files.com/6127fb2c77e53513fea9657c/612d38df9b48bca5bd62f48b_padel-tech-logo.png" alt="Logo" width="200" height=auto> <!-- Ajuste del tamaño del logo -->
+        Padel App
+    </a>
+
+    <!-- Botón para dispositivos móviles -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+
+    <!-- Menú de navegación -->
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto"> <!-- ms-auto alinea a la derecha -->
+        <ul class="navbar-nav ms-auto"> <!-- ms-auto para alinear a la derecha -->
             <li class="nav-item">
-                <a class="nav-link" href="#">Inicio</a>
+                <a class="nav-link" href="/">Inicio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Players</a>
+                <a class="nav-link" href="/players">Players</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Reservas</a>
+                <a class="nav-link" href="/reservas">Reservas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Usuario</a>
+                <a class="nav-link" href="/usuario">Usuario</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contact">Contacto</a>
             </li>
         </ul>
     </div>
 </nav>
 
 <!-- Jumbotron para el título centralizado -->
-<div class="jumbotron text-center bg-primary text-white py-5">
+<div class="jumbotron text-center" style="background-color: #CAD021; color: white; padding: 80px 20px;">
     <h1>Would you like to play <i>Padel</i>?</h1>
     <p class="lead">Experience the best courts and matches in the city.</p>
 </div>
@@ -62,7 +73,7 @@ $results = $query->fetchAll(PDO::FETCH_ASSOC);
                     <?php endif; ?>
                     <div class="card-body">
                         <h5 class="card-title"><?php echo htmlspecialchars($court['name'], ENT_QUOTES, 'UTF-8'); ?></h5>
-                        <a href="reservar.php?idcourt=<?php echo intval($court['idcourt']); ?>" class="btn btn-primary">Reserve this court</a>
+                        <a href="reservar.php?idcourt=<?php echo intval($court['idcourt']); ?>" class="btn" style="background-color: #CAD021; color: white;">Reservar esta cancha</a> <!-- Botón verde -->
                     </div>
                 </div>
             </div>
@@ -70,7 +81,7 @@ $results = $query->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </div>
 
-<!-- Incluyendo Bootstrap JS y dependencias -->
+<!-- Bootstrap JS y dependencias -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
