@@ -19,7 +19,7 @@ if (isset($_SESSION["username"]) && isset($_SESSION["idreserva"])) {
         if ($total_players >= 4) {
             $error = "No se puede agregar otro jugador, ya hay 4 jugadores en esta reserva.";
             $_SESSION["error"] = $error;
-            header("Location: players");
+            header("Location: ./");
         }
         
         // Insertar el nuevo jugador

@@ -1,10 +1,10 @@
 <?php
 session_start();
 include "conexion.php";
-$sql_pistas = "SELECT R.idreservation,R.idtimetable,R.idcourt,c.name,c.img,t.time,count(*) as Players 
+$sql_pistas = "SELECT R.idreservation,R.idtimetable,R.idcourt,c.name,c.img,t.time,r.playdate,count(*) as Players 
 FROM padel.reservation R inner join play P on R.idreservation=P.idreservation 
 join court c on R.idcourt=c.idcourt join timetable t on R.idtimetable=t.idtimetable 
-group by p.idreservation,R.idreservation,R.idtimetable,R.idcourt,c.name,c.img,t.time
+group by p.idreservation,R.idreservation,R.idtimetable,R.idcourt,c.name,c.img,t.time,R.playdate
 having Players<4";
 $stm = $conn->prepare($sql_pistas);
 $stm->execute();
@@ -44,6 +44,7 @@ if(isset($_POST["idreserva"])){
             <p>' . $pista["name"] . '</p>
             <form action="" method="post">
             <p>'. $pista['time'] .'</p>
+            <p>'. $pista['playdate'] .'</p>
             <input type="hidden" name="idreserva" value="' . $pista["idreservation"] . '">
             <input type="hidden" name="idpista" value="' . $pista["idcourt"] . '">
             <label>ingresa el nombre</label>
