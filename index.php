@@ -106,7 +106,7 @@ $results = $query->fetchAll(PDO::FETCH_ASSOC);
     <!-- Footer -->
     <footer class="footer bg-dark text-center text-white p-4"> <!-- Fondo negro -->
         <div class="container-fluid">
-            <p class="mb-0" style="color: #CAD021;">App creada por Nico, Gabi, Sofía, Pablo y Adri</p>
+            <p class="mb-0" style="color: #CAD021;">App creada por Nico, Gabi, Sofía, Pablo y Adri.</p>
         </div>
     </footer>
 

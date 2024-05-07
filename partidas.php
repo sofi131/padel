@@ -1,38 +1,34 @@
 <?php
-//el valor de la opcion de hora se manda el id y la fecha si se manda el value
-
-//agregar reserva
-include 'conexion.php';
 session_start();
-if (isset($_POST["fecha"])) {
-    $_SESSION["fecha"] =  $_POST["fecha"];
-    $_SESSION["opcion"] = $_POST["opcion"];
-}
-var_dump($_SESSION['iduser']);
-if (!isset($_SESSION["idreserva"])) {
-    if (isset($_SESSION['fecha']) && isset($_SESSION["opcion"])) {
-        $fecha = $_SESSION["fecha"];
-        $idtime = $_SESSION["opcion"];
-        $idpista = $_SESSION["idpista"];
-        $sql_reserva = "insert into reservation (idtimetable,idcourt,playdate) values (?,?,?)";
-        $result = $conn->prepare($sql_reserva);
-        $result->bindParam(1, $idtime);
-        $result->bindParam(2, $idpista);
-        $result->bindParam(3, $fecha);
-        $result->execute();
-        if ($result->rowCount() == 1) {
-            $idreserva = $conn->lastInsertId();
-            $_SESSION["idreserva"] = $idreserva;
-            echo 'salio bien';
-        } else {
-            echo 'salio mal';
-        }
+include "conexion.php";
+$sql_pistas = "SELECT R.idreservation,R.idtimetable,R.idcourt,c.name,c.img,t.time,r.playdate,count(*) as Players 
+FROM padel.reservation R inner join play P on R.idreservation=P.idreservation 
+join court c on R.idcourt=c.idcourt join timetable t on R.idtimetable=t.idtimetable 
+group by p.idreservation,R.idreservation,R.idtimetable,R.idcourt,c.name,c.img,t.time,R.playdate
+having Players<4";
+$stm = $conn->prepare($sql_pistas);
+$stm->execute();
+$pistas = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+
+if(isset($_POST["idreserva"])){
+    $idreserva = $_POST ["idreserva"];
+    $username = $_POST["user"];
+    $iduser = $_SESSION["iduser"];
+    $sql = "insert into play (iduser,idreservation,username) values (?,?,?)";
+    $stm = $conn->prepare($sql);
+    $stm->bindParam(1,$iduser);
+    $stm->bindParam(2,$idreserva);
+    $stm->bindParam(3,$username);
+    $stm->execute();
+    if($stm->rowCount() > 0){
+        echo "pudiste meterte a la pista";
+    }else{
+        echo "no pudiste entrar a la pista";
     }
-} else {
-    $idreserva = $_SESSION["idreserva"];
 }
 ?>
-<!--mi parte-->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,10 +68,48 @@ if (!isset($_SESSION["idreserva"])) {
     </nav>
 
     <!-- Contenido principal -->
-    <div class="flex-grow-1 text-center"> <!-- Flex-grow para empujar el footer hacia abajo -->
-    <h1>Players</h1>
-    <input type="text" name="fecha" value="<?php echo $_POST['fecha'] ?? ''; ?>">
-    <input type="text" name="opcion" value="<?php echo $_POST['opcion'] ?? ''; ?>">
+    <div class="pistas">
+        <?php
+        foreach ($pistas as $pista) {
+            echo '<div class="pista">
+            <img src="' . $pista["img"] . '" alt="Imagen de la pista">
+            <p>' . $pista["name"] . '</p>
+            <form action="" method="post">
+            <p>'. $pista['time'] .'</p>
+            <p>'. $pista['playdate'] .'</p>
+            <input type="hidden" name="idreserva" value="' . $pista["idreservation"] . '">
+            <input type="hidden" name="idpista" value="' . $pista["idcourt"] . '">
+            <label>ingresa el nombre</label>
+            <input type="text" name="user" >
+            <button type="submit" >Inscribirte a la pista </button>
+            </form>
+            </div>';
+        }
+        ?>
+    </div>
+
+<form action="players" method="post">
+    <div>
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" required>
+    </div>
+    <div>
+        <label>Selecciona una opción:</label>
+        <?php
+
+        foreach ($result as $opcion) {
+            echo '<div>
+            <input type="radio" id="opcion_' . $opcion["idtimetable"] . '" name="opcion" value="' . $opcion["idtimetable"] . '">
+            <label for="opcion_' . $opcion["idtimetable"] . '">'. $opcion["time"] . '</label>
+            </div>';
+        }
+        ?>
+    </div>
+    <div>
+        <button type="submit" name="accion" value="seleccionar">Seleccionar</button>
+    </div>
+    
+</form>
 
 
     <form method="post" action="newplayer">
@@ -102,5 +136,3 @@ if (!isset($_SESSION["idreserva"])) {
 
 </body>
 </html>
-
-
