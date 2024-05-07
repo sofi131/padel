@@ -1,13 +1,15 @@
 /* Estilo para el jumbotron con imagen de fondo y superposición verde */
 .jumbotron {
     position: relative;
-    background-image: url('../img/cover.jpg'); /* Imagen de fondo */
+    background-image: url('../img/cover.jpg');
+    /* Imagen de fondo */
     background-size: cover;
     background-position: center;
-    color: white; /* Texto blanco */
+    color: white;
+    /* Texto blanco */
     padding: 80px 20px;
 }
-        
+
 /* Superposición verde con opacidad */
 .jumbotron .overlay {
     position: absolute;
@@ -15,12 +17,14 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(202, 208, 33, 0.616); /* Verde con opacidad */
+    background-color: rgba(202, 208, 33, 0.616);
+    /* Verde con opacidad */
 }
 
 /* Texto para que sea visible por encima de la superposición */
 .jumbotron .content {
-    position: relative; /* Para que el contenido esté por encima de la superposición */
+    position: relative;
+    /* Para que el contenido esté por encima de la superposición */
     z-index: 1;
 }
 
@@ -32,7 +36,8 @@
 }
 
 .page-section-green {
-    background-color: #CAD021; /* Color verde */
+    background-color: #CAD021;
+    /* Color verde */
     padding: 40px 20px;
     text-align: center;
 }
@@ -44,7 +49,8 @@
 
 .w-container {
     max-width: 1200px;
-    margin: 0 auto; /* Centramos el contenedor */
+    margin: 0 auto;
+    /* Centramos el contenedor */
 }
 
 .bold-text {
@@ -52,7 +58,8 @@
 }
 
 .no-underline {
-    text-decoration: none; /* Quita el subrayado */
+    text-decoration: none;
+    /* Quita el subrayado */
 }
 
 .stat-block {
@@ -62,5 +69,17 @@
 }
 
 .installation-stats-number {
-    font-size: 2em; /* Tamaño grande para los números */
+    font-size: 2em;
+    /* Tamaño grande para los números */
 }
+/* footer */
+.footer {
+    background-color: black; /* Fondo negro */
+    color: #CAD021; /* Texto verde */
+    text-align: center; /* Texto centrado */
+    padding: 20px;
+    margin: 0; /* Sin márgenes */
+    width: 100%; /* Ancho completo */
+    margin-top: auto; /* Empuja el footer al final */
+}
+
