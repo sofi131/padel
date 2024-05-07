@@ -1,7 +1,7 @@
 /* Estilo para el jumbotron con imagen de fondo y superposición verde */
 .jumbotron {
     position: relative;
-    background-image: url('assets/img/cover.jpg'); /* Imagen de fondo */
+    background-image: url('../img/cover.jpg'); /* Imagen de fondo */
     background-size: cover;
     background-position: center;
     color: white; /* Texto blanco */
@@ -15,11 +15,52 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(202, 208, 33, 0.6); /* Verde con opacidad */
+    background-color: rgba(202, 208, 33, 0.616); /* Verde con opacidad */
 }
 
 /* Texto para que sea visible por encima de la superposición */
 .jumbotron .content {
     position: relative; /* Para que el contenido esté por encima de la superposición */
     z-index: 1;
+}
+
+/*Paja del padel ficticio*/
+.page-section-white {
+    background-color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.page-section-green {
+    background-color: #CAD021; /* Color verde */
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.h1-centre-black {
+    color: black;
+    font-weight: bold;
+}
+
+.w-container {
+    max-width: 1200px;
+    margin: 0 auto; /* Centramos el contenedor */
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.no-underline {
+    text-decoration: none; /* Quita el subrayado */
+}
+
+.stat-block {
+    display: inline-block;
+    margin: 20px;
+    text-align: center;
+}
+
+.installation-stats-number {
+    font-size: 2em; /* Tamaño grande para los números */
 }

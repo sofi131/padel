@@ -59,12 +59,31 @@ $results = $query->fetchAll(PDO::FETCH_ASSOC);
     <div class="overlay"></div> <!-- Superposición verde con opacidad -->
     <div class="content"> <!-- Texto del jumbotron -->
         <h1>Would you like to play <i>Padel</i>?</h1>
-        <p class="lead">Experience the best courts and matches in the city.</p>
+        <p class="lead" style="font-weight: bold;">Experience the best courts and matches in the city.</p> <!-- Texto más grueso -->
     </div>
 </div>
 
+<!-- Nueva sección para la información sobre Padel Tech -->
+<div class="page-section-white">
+    <div class="home-intro w-container" style="text-align: justify-center; font-size: 1.1em;"> <!-- Texto justificado -->
+        <h2 class="h1-centre-black"><strong class="h1-bold">Padel Tech es el proveedor líder de pistas de pádel en Galicia</strong></h2>
+        <p class="p-intro">
+            Padel Tech ha instalado muchas pistas en Galicia y en otros lugares del mundo. Somos el distribuidor exclusivo para España de AFP Courts | adidas, ofreciendo un suministro personalizado y soluciones de instalación de pistas de pádel para cada tipo de lugar. Nuestros servicios especializados incluyen estudio del sitio, diseño de pistas, planos técnicos, planificación, construcción, y mantenimiento de pistas de pádel. 
+        </p>
+        <p class="p-intro">
+            Todas nuestras pistas tienen al menos una garantía de cinco años. Somos líderes en el suministro y la instalación de pistas de pádel, garantizando la máxima calidad y durabilidad. Descubre por qué somos la mejor opción para tu próximo proyecto de pádel.
+        </p>
+    </div>
+</div>
+
+<!-- Título cancha -->
+<div class="page-section-white">
+    <div class="home-intro w-container" style="text-align: justify-center; font-size: 1.1em;"> <!-- Texto justificado -->
+        <h2 class="h1-centre-black"><strong class="h1-bold">Elige tu cancha preferida</strong></h2>
+        
 <!-- Tarjetas para las canchas -->
 <div class="container my-5">
+
     <div class="row justify-content-center">
         <?php foreach ($results as $court): ?>
             <div class="col-md-4 mb-4"> <!-- Margin entre tarjetas -->
