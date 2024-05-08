@@ -16,11 +16,16 @@ $fecha_seleccionada = isset($_POST["fecha_selecionada"]) ? $_POST["fecha_selecio
 // Formatear la fecha en el formato adecuado "yyyy-MM-dd"
 $fecha_formateada = date('Y-m-d', strtotime($fecha_seleccionada));
 
-$sql = "SELECT T.idtimetable, T.time
+$sql = 'SELECT T.idtimetable, T.time
 FROM timetable T
-LEFT JOIN reservation R ON T.idtimetable = R.idtimetable AND R.playdate = ?
-GROUP BY T.idtimetable, T.time
-HAVING COUNT(*) < 4 OR COUNT(*) IS NULL";
+LEFT JOIN (
+    SELECT idtimetable, playdate, COUNT(DISTINCT p.username) AS num_reservas
+    FROM reservation r
+    JOIN play p ON r.idreservation = p.idreservation
+    WHERE r.playdate = ?
+    GROUP BY idtimetable, playdate
+) R ON T.idtimetable = R.idtimetable
+WHERE R.num_reservas < 4 OR R.num_reservas IS NULL';
 $stm = $conn->prepare($sql);
 $stm->execute([$fecha_seleccionada]);
 $result = $stm->fetchAll(PDO::FETCH_ASSOC);
