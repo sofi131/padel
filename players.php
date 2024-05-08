@@ -47,31 +47,13 @@ if (!isset($_SESSION["idreserva"])) {
 
     <h2>Agregar jugadores:</h2>
 
-    <form action="newplayer.php" method="post">
-        <div class="player">
-            <input type="hidden" name="iduser1" >
-            <label for="username1">Nombre jugador 1:</label>
-            <input type="text" name="username" id="username1" placeholder="Nombre" required>
-        </div>
+    <form method="post" action="newplayer">
+        <label for="username1">Ingrese un usuario </label>
+        <input type="text" id="username" name="username" required><br><br>
 
-        <div class="player">
-            <input type="hidden" name="iduser2" >
-            <label for="username2">Nombre jugador 2:</label>
-            <input type="text" name="username" id="username2" placeholder="Nombre" required>
-        </div>
-
-        <div class="player">
-            <input type="hidden" name="iduser3" >
-            <label for="username3">Nombre jugador 3:</label>
-            <input type="text" name="username" id="username3" placeholder="Nombre" required>
-        </div>
-
-        <button type="submit">Guardar</button>
-        <button type="submit" formaction="confirmacion_reserva.php">Finalizar reserva</button>
-        <div class="button-container">
-        <a href="index.php" class="button cancel-button">Cancelar reserva</a>
-        </div>
+        <input type="submit" value="Enviar">
     </form>
+    <button type="submit" formaction="confirmacion_reserva.php">Finalizar reserva</button>
     <?php
             if(isset($error)){
                 echo "<p>".$error."</p>";
