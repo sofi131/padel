@@ -70,9 +70,18 @@ if (!isset($_SESSION["idreserva"])) {
     </nav>
 
     <body class="d-flex flex-column min-vh-100"> <!-- Flex para mantener el footer al fondo -->
-
+     <!-- Jumbotron -->
+    <div class="jumbotron text-center">
+            <div class="overlay"></div>
+            <div class="content">
+                <h1>Reserva tu <i>pista y horario</i></h1>
+                <p class="lead" style="font-weight: bold;">Experiencia las mejores pistas de toda Galicia.</p>
+            </div>
+        </div>
 <!-- Contenido principal centrado -->
 <div class="flex-grow-1 d-flex justify-content-center align-items-center"> <!-- Centro horizontal y vertical -->
+
+
     <div class="text-center"> <!-- Centrar el contenido -->
         <h2>Reserva de pista y horario</h2>
         <p>Pista seleccionada: <?php echo $idpista; ?></p>
@@ -109,13 +118,7 @@ if (!isset($_SESSION["idreserva"])) {
     </div>
 </div>
 
-<!-- Bootstrap JS y dependencias -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
-
-
     <!-- Footer -->
     <footer class="footer bg-dark text-center text-white p-4"> <!-- Fondo oscuro -->
         <div class="container-fluid"> <!-- Ancho completo -->

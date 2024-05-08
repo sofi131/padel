@@ -50,53 +50,62 @@ $result = $stm->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </nav>
 
-    <!-- Contenido principal -->
-    <div class="container flex-grow-1 my-5"> <!-- Margen para separar el contenido -->
-        <h1>Reserva de pista</h1>
-
-        <!-- Formulario principal -->
-        <form action="players.php" method="post">
-            <div class="mb-3"> <!-- Grupo de fecha con margen -->
-                <label for="fecha" class="form-label">Fecha:</label>
-                <input type="date" class="form-control" id="fecha" name="fecha" required> <!-- Form-control -->
+    <body class="d-flex flex-column min-vh-100"> <!-- Flex para mantener el footer al fondo -->
+       <!-- Jumbotron -->
+       <div class="jumbotron text-center">
+                <div class="overlay"></div>
+                <div class="content">
+                    <h1>Reserva tu <i>pista</i></h1>
+                    <p class="lead" style="font-weight: bold;">Experiencia las mejores pistas de toda Galicia.</p>
+                </div>
             </div>
+        <!-- Contenido principal -->
+        <div class="container flex-grow-1 my-5"> <!-- Margen para separar el contenido -->
+         
 
-            <div class="mb-3"> <!-- Grupo de opciones con margen -->
-                <label class="form-label">Selecciona una opción:</label>
-                <?php foreach ($result as $opcion) : ?>
-                    <div class="form-check"> <!-- Radio buttons -->
-                        <input type="radio" class="form-check-input" id="opcion_<?php echo $opcion["idtimetable"]; ?>" name="opcion" value="<?php echo $opcion["idtimetable"]; ?>">
-                        <label for="opcion_<?php echo $opcion["idtimetable"]; ?>" class="form-check-label"><?php echo $opcion["time"]; ?></label>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+            <!-- Formulario principal -->
+            <form action="players.php" method="post">
+                <div class="mb-3"> <!-- Grupo de fecha con margen -->
+                    <label for="fecha" class="form-label">Fecha:</label>
+                    <input type="date" class="form-control" id="fecha" name="fecha" required> <!-- Form-control -->
+                </div>
 
-            <div class="mt-3"> <!-- Margen superior para botones -->
-                <button type="submit" class="btn" style="background-color: #CAD021; color: white;">Seleccionar</button> <!-- Botón verde -->
-            </div>
-        </form>
+                <div class="mb-3"> <!-- Grupo de opciones con margen -->
+                    <label class="form-label">Selecciona una opción:</label>
+                    <?php foreach ($result as $opcion) : ?>
+                        <div class="form-check"> <!-- Radio buttons -->
+                            <input type="radio" class="form-check-input" id="opcion_<?php echo $opcion["idtimetable"]; ?>" name="opcion" value="<?php echo $opcion["idtimetable"]; ?>">
+                            <label for="opcion_<?php echo $opcion["idtimetable"]; ?>" class="form-check-label"><?php echo $opcion["time"]; ?></label>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
 
-        <!-- Formulario para agregar usuarios -->
-        <form method="post" action="newplayer.php" class="mt-4"> <!-- Margen superior -->
-            <div class="mb-3"> <!-- Grupo de usuario con margen -->
-                <label for="username1" class="form-label">Ingrese un usuario:</label>
-                <input type="text" class="form-control" id="username" name="username" required> <!-- Form-control -->
-            </div>
-            <button type="submit" class="btn" style="background-color: #CAD021; color: white;">Enviar</button> <!-- Botón verde -->
-        </form>
-    </div>
+                <div class="mt-3"> <!-- Margen superior para botones -->
+                    <button type="submit" class="btn" style="background-color: #CAD021; color: white;">Seleccionar</button> <!-- Botón verde -->
+                </div>
+            </form>
 
-    <!-- Footer -->
-    <footer class="footer bg-dark text-center text-white p-4"> <!-- Fondo oscuro -->
-        <div class="container-fluid"> <!-- Ancho completo -->
-            <p class="mb-0" style="color: #CAD021;">App creada por Nico, Gabi, Sofía, Pablo y Adri</p> <!-- Texto de crédito -->
+            <!-- Formulario para agregar usuarios -->
+            <form method="post" action="newplayer.php" class="mt-4"> <!-- Margen superior -->
+                <div class="mb-3"> <!-- Grupo de usuario con margen -->
+                    <label for="username1" class="form-label">Ingrese un usuario:</label>
+                    <input type="text" class="form-control" id="username" name="username" required> <!-- Form-control -->
+                </div>
+                <button type="submit" class="btn" style="background-color: #CAD021; color: white;">Enviar</button> <!-- Botón verde -->
+            </form>
         </div>
-    </footer>
+        </div>
+        <!-- Footer -->
+        <footer class="footer bg-dark text-center text-white p-4"> <!-- Fondo oscuro -->
+            <div class="container-fluid"> <!-- Ancho completo -->
+                <p class="mb-0" style="color: #CAD021;">App creada por Nico, Gabi, Sofía, Pablo y Adri</p> <!-- Texto de crédito -->
+            </div>
+        </footer>
 
-    <!-- Bootstrap JS y dependencias -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap JS y dependencias -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-</body>
+    </body>
 
 </html>
