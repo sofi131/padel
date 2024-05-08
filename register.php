@@ -8,12 +8,13 @@ if (isset($_POST["username"])) {
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    // Manejo del archivo cargado
-    //$target_dir = "uploads/";  // directorio donde se guardarán los archivos
-    //$target_file = $target_dir . basename($_FILES["file"]["name"]);
-    //$image_uploaded = move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
+    // Se puede agregar el manejo del archivo si se requiere cargar una imagen
+    /*
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["file"]["name"]);
+    $image_uploaded = move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
 
-   /* if ($image_uploaded) {
+    if ($image_uploaded) {
         $sql = "INSERT INTO user (username, email, password, image) VALUES (?, ?, ?, ?)";
         $stm = $conn->prepare($sql);
         $stm->bindParam(1, $username);
@@ -29,7 +30,8 @@ if (isset($_POST["username"])) {
         }
     } else {
         $msg = "Error al subir la imagen";
-    }*/
+    }
+    */
 }
 ?>
 
@@ -40,57 +42,77 @@ if (isset($_POST["username"])) {
     <title>Registro - Padel App</title>
     <!-- Incluyendo Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-
-<div class="container  vh-100 d-flex justify-content-center align-items-center">
-    <div class="col-md-6">
-        <!-- Título de la página -->
-        <h2 class="text-center">Registro de Usuario</h2>
-        
-        <!-- Mostrar mensaje de confirmación o error -->
-        <?php
-        if ($msg) {
-            $alertType = strpos($msg, "correctamente") !== false ? "success" : "danger";
-            echo "<div class='alert alert-$alertType text-center'>$msg</div>";
+    <style>
+        /* Color verde personalizado */
+        .btn-green {
+            background-color: #CAD021; /* Verde */
+            color: white; /* Texto blanco */
         }
-        ?>
-        
-        <!-- Formulario de registro -->
-        <form method="POST" action="" enctype="multipart/form-data">
-            <div class="form-group">
-                <label para="username">Nombre de usuario</label>
-                <input type="text" class="form-control" name="username" required>
-            </div>
-            <div class="form-group">
-                <label para="email">Correo Electrónico</label>
-                <input type="email" class="form-control" name="email" required>
-            </div>
-            <div class="form-group">
-                <label para="password">Contraseña</label>
-                <input type="password" class="form-control" name="password" required>
-            </div>
-           
-            <div class="form-group">
-                 <!--
-                <label para="file">Foto de perfil</label>
-                <input type="file" class="form-control-file" name="file" required>
-                -->
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
+
+        .btn-green:hover {
+            background-color: #B0D15B; /* Color más oscuro al pasar el mouse */
+        }
+
+        /* Estilo para formulario con fondo negro y bordes redondeados */
+        .register-form {
+            background-color: black; /* Fondo negro */
+            padding: 20px; /* Espacio interno */
+            border-radius: 10px; /* Bordes redondeados */
+            color: white; /* Texto blanco */
+        }
+
+        .register-form .form-control {
+            background-color: white; /* Fondo blanco para inputs */
+            border-color: #CAD021; /* Borde verde */
+        }
+
+        .register-form .form-label {
+            color: white; /* Texto blanco */
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column min-vh-100"> <!-- Flex para mantener el footer al fondo -->
+
+    <div class="container vh-100 d-flex justify-content-center align-items-center"> <!-- Centrar vertical y horizontal -->
+        <div class="col-md-6 register-form"> <!-- Aplicar estilo al formulario -->
+            <!-- Título del formulario -->
+            <h2 class="text-center">Registro de Usuario</h2>
             
-        </form>
-        
-        <!-- Opciones adicionales -->
-        <div class="text-center mt-3">
-            <a href="login.php">¿Ya tienes cuenta? Inicia sesión</a>
+            <!-- Mostrar mensaje de confirmación o error -->
+            <?php if ($msg): ?>
+                <div class='alert alert-<?php echo (strpos($msg, "correctamente") !== false) ? "success" : "danger"; ?> text-center'><?php echo $msg; ?></div>
+            <?php endif; ?>
+
+            <!-- Formulario de registro -->
+            <form method="POST" action="" class="text-center"> <!-- Centrando el formulario -->
+                <div class="form-group">
+                    <label para="username" class="form-label">Nombre de usuario</label>
+                    <input type="text" class="form-control" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label para="email" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label para="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" name="password" required>
+                </div>
+               
+                <!-- Botón con estilo personalizado -->
+                <button type="submit" class="btn btn-green btn-block">Registrarse</button> <!-- Botón verde -->
+            </form>
+            
+            <!-- Opciones adicionales -->
+            <div class="text-center mt-3"> <!-- Espacio para opciones adicionales -->
+                <a href="login.php" class="text-white">¿Ya tienes cuenta? Inicia sesión</a>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Incluyendo Bootstrap JS y dependencias -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS y dependencias -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
