@@ -14,6 +14,7 @@ if (!isset($_SESSION["idreserva"])) {
         $fecha = $_SESSION["fecha"];
         $idtime = $_SESSION["opcion"];
         $idpista = $_SESSION["idpista"];
+       
         $sql_reserva = "insert into reservation (idtimetable,idcourt,playdate) values (?,?,?)";
         $result = $conn->prepare($sql_reserva);
         $result->bindParam(1, $idtime);
@@ -54,7 +55,7 @@ if (!isset($_SESSION["idreserva"])) {
         <input type="submit" value="Enviar">
     </form>
     <?php
-    if(isset($_SESSION["error"])) echo $_SESSION["error"];
+    if(isset($_SESSION["error"])) echo $_SESSION["error"] . $_SESSION["total"]; ;
     ?>
 
 </body>

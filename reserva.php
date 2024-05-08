@@ -4,14 +4,14 @@ session_start();
 var_dump($_SESSION['iduser']);
 $iduser = $_SESSION["iduser"];
 //traer horas de la base de datos
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar si se recibió la fecha oculta
-    if (isset($_GET["fecha_selecionada"])) {
+    if (isset($_POST["fecha_selecionada"])) {
         // Obtener la fecha recibida
-        $fecha_seleccionada = $_GET["fecha_selecionada"];
+        $fecha_seleccionada = $_POST["fecha_selecionada"];
     } 
 }
-$fecha_seleccionada = isset($_GET["fecha_selecionada"]) ? $_GET["fecha_selecionada"] : date('Y-m-d');
+$fecha_seleccionada = isset($_POST["fecha_selecionada"]) ? $_POST["fecha_selecionada"] : date('Y-m-d');
 
 // Formatear la fecha en el formato adecuado "yyyy-MM-dd"
 $fecha_formateada = date('Y-m-d', strtotime($fecha_seleccionada));
@@ -62,7 +62,7 @@ if (isset($_POST["idpista"])) {
         </div>
 
     </form>
-    <form id="formulario" method="get" action="">
+    <form id="formulario" method="POST" action="">
         <input type="hidden" id="fecha_selecionada" name="fecha_selecionada">
     </form>
     <script>
