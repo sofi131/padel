@@ -43,20 +43,25 @@ if (!isset($_SESSION["idreserva"])) {
 
 <body>
 
-<h2>Reserva de pista y horario</h2>
+    <h2>Reserva de pista y horario</h2>
     <p>Pista seleccionada: <?php echo $idpista; ?></p>
     <p>Fecha seleccionada: <?php echo $fecha; ?></p>
 
-    
+
 
     <form method="post" action="newplayer">
+
+        <input type="hidden" name="idpista" value="<?php echo isset($idpista) ? $idpista : ''; ?>">
+        <input type="hidden" name="fecha" value="<?php echo isset($fecha) ? $fecha : ''; ?>">
+
+
         <label for="username1">Ingrese un usuario </label>
         <input type="text" id="username" name="username" required><br><br>
 
         <input type="submit" value="Enviar">
     </form>
     <?php
-    if(isset($_SESSION["error"])) echo $_SESSION["error"];
+    if (isset($_SESSION["error"])) echo $_SESSION["error"];
     ?>
 
 </body>
