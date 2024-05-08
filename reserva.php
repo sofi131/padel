@@ -2,11 +2,32 @@
 include 'conexion.php';
 session_start();
 $iduser = $_SESSION["iduser"];
+$_SESSION["idpista"] = $_GET["idcourt"];
+//traer horas de la base de datos
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Verificar si se recibió la fecha oculta
+    if (isset($_POST["fecha_seleccionada"])) {
+        // Obtener la fecha recibida
+        $fecha_seleccionada = $_POST["fecha_seleccionada"];
+    }
+}
+$fecha_seleccionada = isset($_POST["fecha_seleccionada"]) ? $_POST["fecha_seleccionada"] : date('Y-m-d');
 
+// Formatear la fecha en el formato adecuado "yyyy-MM-dd"
+$fecha_formateada = date('Y-m-d', strtotime($fecha_seleccionada));
 // Obtener horas de la base de datos
-$sql = "select * from timetable";
+$sql = "SELECT T.idtimetable, T.time
+FROM timetable T
+LEFT JOIN (
+    SELECT idtimetable, playdate, COUNT(DISTINCT p.username) AS num_reservas
+    FROM reservation r
+    JOIN play p ON r.idreservation = p.idreservation
+    WHERE r.playdate = ?
+    GROUP BY idtimetable, playdate
+) R ON T.idtimetable = R.idtimetable
+WHERE R.num_reservas < 4 OR R.num_reservas IS NULL";
 $stm = $conn->prepare($sql);
-$stm->execute();
+$stm->execute([$fecha_seleccionada]);
 $result = $stm->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
@@ -51,23 +72,23 @@ $result = $stm->fetchAll(PDO::FETCH_ASSOC);
     </nav>
 
     <body class="d-flex flex-column min-vh-100"> <!-- Flex para mantener el footer al fondo -->
-       <!-- Jumbotron -->
-       <div class="jumbotron text-center">
-                <div class="overlay"></div>
-                <div class="content">
-                    <h1>Reserva tu <i>pista</i></h1>
-                    <p class="lead" style="font-weight: bold;">Experiencia las mejores pistas de toda Galicia.</p>
-                </div>
+        <!-- Jumbotron -->
+        <div class="jumbotron text-center">
+            <div class="overlay"></div>
+            <div class="content">
+                <h1>Reserva tu <i>pista</i></h1>
+                <p class="lead" style="font-weight: bold;">Experiencia las mejores pistas de toda Galicia.</p>
             </div>
+        </div>
         <!-- Contenido principal -->
         <div class="container flex-grow-1 my-5"> <!-- Margen para separar el contenido -->
-         
+
 
             <!-- Formulario principal -->
-            <form action="players.php" method="post">
+            <form action="players" method="post">
                 <div class="mb-3"> <!-- Grupo de fecha con margen -->
                     <label for="fecha" class="form-label">Fecha:</label>
-                    <input type="date" class="form-control" id="fecha" name="fecha" required> <!-- Form-control -->
+                    <input type="date" class="form-control" id="fecha" name="fecha" required value="<?php echo $fecha_seleccionada; ?>"> <!-- Form-control -->
                 </div>
 
                 <div class="mb-3"> <!-- Grupo de opciones con margen -->
@@ -85,14 +106,13 @@ $result = $stm->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             </form>
 
-            <!-- Formulario para agregar usuarios -->
-            <form method="post" action="newplayer.php" class="mt-4"> <!-- Margen superior -->
-                <div class="mb-3"> <!-- Grupo de usuario con margen -->
-                    <label for="username1" class="form-label">Ingrese un usuario:</label>
-                    <input type="text" class="form-control" id="username" name="username" required> <!-- Form-control -->
-                </div>
-                <button type="submit" class="btn" style="background-color: #CAD021; color: white;">Enviar</button> <!-- Botón verde -->
+
+            <form id="formulario" method="POST" action="">
+                <input type="hidden" id="fecha_seleccionada" name="fecha_seleccionada">
             </form>
+
+            <!-- Formulario para agregar usuarios -->
+
         </div>
         </div>
         <!-- Footer -->
@@ -105,7 +125,29 @@ $result = $stm->fetchAll(PDO::FETCH_ASSOC);
         <!-- Bootstrap JS y dependencias -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!--<script src="./assets/js/reserva.js"></script>-->
+        <script>
+            // Obtener el elemento de entrada de fecha
+            var fechaInput = document.getElementById("fecha");
 
+            // Almacenar la fecha seleccionada inicialmente
+            var fechaSeleccionadaInicial = fechaInput.value;
+
+            // Agregar un event listener para el evento change
+            fechaInput.addEventListener("change", function() {
+                // Obtener el valor seleccionado (la fecha)
+                var fechaSeleccionada = fechaInput.value;
+
+                // Asignar la fecha al campo oculto del formulario
+                document.getElementById("fecha_seleccionada").value = fechaSeleccionada;
+
+                // Enviar el formulario
+                document.getElementById("formulario").submit();
+
+                // Restaurar la fecha seleccionada inicialmente después de enviar el formulario
+                fechaInput.value = fechaSeleccionadaInicial;
+            });
+        </script>
     </body>
 
 </html>

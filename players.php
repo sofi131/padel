@@ -4,6 +4,10 @@ session_start();
 if (isset($_POST["fecha"])) {
     $_SESSION["fecha"] =  $_POST["fecha"];
     $_SESSION["opcion"] = $_POST["opcion"];
+    /*if(isset($_GET["idcourt"])){
+        $idpista = $_GET["idcourt"];
+    }
+    */
 }
 
 if (!isset($_SESSION["idreserva"])) {
@@ -84,9 +88,6 @@ if (!isset($_SESSION["idreserva"])) {
 
     <div class="text-center"> <!-- Centrar el contenido -->
         <h2>Reserva de pista y horario</h2>
-        <p>Pista seleccionada: <?php echo $idpista; ?></p>
-        <p>Fecha seleccionada: <?php echo $fecha; ?></p>
-
         <!-- Formulario centrado con margen -->
         <h2>Agregar jugadores:</h2>
         <form action="newplayer.php" method="post" class="text-center" style="margin: 20px;"> <!-- Espacio para el formulario -->
