@@ -9,11 +9,11 @@ if (isset($_POST["username"])) {
     $password = $_POST["password"];
 
     // Manejo del archivo cargado
-    $target_dir = "uploads/";  // directorio donde se guardarán los archivos
-    $target_file = $target_dir . basename($_FILES["file"]["name"]);
-    $image_uploaded = move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
+    //$target_dir = "uploads/";  // directorio donde se guardarán los archivos
+    //$target_file = $target_dir . basename($_FILES["file"]["name"]);
+    //$image_uploaded = move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
 
-    if ($image_uploaded) {
+   /* if ($image_uploaded) {
         $sql = "INSERT INTO user (username, email, password, image) VALUES (?, ?, ?, ?)";
         $stm = $conn->prepare($sql);
         $stm->bindParam(1, $username);
@@ -29,7 +29,7 @@ if (isset($_POST["username"])) {
         }
     } else {
         $msg = "Error al subir la imagen";
-    }
+    }*/
 }
 ?>
 
@@ -43,7 +43,7 @@ if (isset($_POST["username"])) {
 </head>
 <body>
 
-<div class="container vh-100 d-flex justify-content-center align-items-center">
+<div class="container  vh-100 d-flex justify-content-center align-items-center">
     <div class="col-md-6">
         <!-- Título de la página -->
         <h2 class="text-center">Registro de Usuario</h2>
@@ -70,11 +70,15 @@ if (isset($_POST["username"])) {
                 <label para="password">Contraseña</label>
                 <input type="password" class="form-control" name="password" required>
             </div>
+           
             <div class="form-group">
+                 <!--
                 <label para="file">Foto de perfil</label>
                 <input type="file" class="form-control-file" name="file" required>
+                -->
             </div>
             <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
+            
         </form>
         
         <!-- Opciones adicionales -->

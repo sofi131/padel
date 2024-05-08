@@ -51,7 +51,7 @@ $result = $stm->fetchAll(PDO::FETCH_ASSOC);
     </nav>
 
     <!-- Contenido principal -->
-    <div class="container my-5"> <!-- Margen para separar el contenido -->
+    <div class="container flex-grow-1 my-5"> <!-- Margen para separar el contenido -->
         <h1>Reserva de pista</h1>
 
         <!-- Formulario principal -->
