@@ -1,3 +1,34 @@
+<?php
+include 'conexion.php';
+session_start();
+if (isset($_POST["fecha"])) {
+    $_SESSION["fecha"] =  $_POST["fecha"];
+    $_SESSION["opcion"] = $_POST["opcion"];
+}
+
+if (!isset($_SESSION["idreserva"])) {
+    if (isset($_SESSION['fecha']) && isset($_SESSION["opcion"])) {
+        $fecha = $_SESSION["fecha"];
+        $idtime = $_SESSION["opcion"];
+        $idpista = $_SESSION["idpista"];
+        $sql_reserva = "insert into reservation (idtimetable,idcourt,playdate) values (?,?,?)";
+        $result = $conn->prepare($sql_reserva);
+        $result->bindParam(1, $idtime);
+        $result->bindParam(2, $idpista);
+        $result->bindParam(3, $fecha);
+        $result->execute();
+        if ($result->rowCount() == 1) {
+            $idreserva = $conn->lastInsertId();
+            $_SESSION["idreserva"] = $idreserva;
+            echo 'salio bien';
+        } else {
+            echo 'salio mal';
+        }
+    }
+} else {
+    $idreserva = $_SESSION["idreserva"];
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -38,43 +69,52 @@
         </div>
     </nav>
 
-    <!-- Contenido principal centrado -->
-    <div class="flex-grow-1 d-flex justify-content-center align-items-center"> <!-- Centro horizontal y vertical -->
-        <div class="text-center"> <!-- Centrar el contenido -->
-            <h2>Reserva de pista y horario</h2>
-            <p>Pista seleccionada: <?php echo $idpista; ?></p>
-            <p>Fecha seleccionada: <?php echo $fecha; ?></p>
+    <body class="d-flex flex-column min-vh-100"> <!-- Flex para mantener el footer al fondo -->
 
-            <!-- Formulario centrado con margen -->
-            <h2>Agregar jugadores:</h2>
-            <form action="newplayer.php" method="post" class="text-center" style="margin: 20px;"> <!-- Espacio para el formulario -->
-                <!-- Campo del primer jugador con margen -->
-                <div class="player mb-3"> <!-- Margen inferior para espacio -->
-                    <label for="username1">Nombre jugador 1:</label>
-                    <input type="text" name="username" id="username1" placeholder="Nombre" required>
-                </div>
+<!-- Contenido principal centrado -->
+<div class="flex-grow-1 d-flex justify-content-center align-items-center"> <!-- Centro horizontal y vertical -->
+    <div class="text-center"> <!-- Centrar el contenido -->
+        <h2>Reserva de pista y horario</h2>
+        <p>Pista seleccionada: <?php echo $idpista; ?></p>
+        <p>Fecha seleccionada: <?php echo $fecha; ?></p>
 
-                <!-- Campo del segundo jugador con margen -->
-                <div class="player mb-3"> <!-- Margen inferior para espacio -->
-                    <label for="username2">Nombre jugador 2:</label>
-                    <input type="text" name="username" id="username2" placeholder="Nombre" required>
-                </div>
+        <!-- Formulario centrado con margen -->
+        <h2>Agregar jugadores:</h2>
+        <form action="newplayer.php" method="post" class="text-center" style="margin: 20px;"> <!-- Espacio para el formulario -->
+            <!-- Campo del primer jugador con margen -->
+            <div class="player mb-3"> <!-- Margen inferior para espacio -->
+                <label for="username1">Nombre jugador 1:</label>
+                <input type="text" name="username" id="username1" placeholder="Nombre" required>
+            </div>
 
-                <!-- Campo del tercer jugador con margen -->
-                <div class="player mb-3"> <!-- Margen inferior para espacio -->
-                    <label for="username3">Nombre jugador 3:</label>
-                    <input type="text" name="username" id="username3" placeholder="Nombre" required>
-                </div>
+            <!-- Campo del segundo jugador con margen -->
+            <div class="player mb-3"> <!-- Margen inferior para espacio -->
+                <label for="username2">Nombre jugador 2:</label>
+                <input va="username2" type="text" name="username" placeholder="Nombre" required>
+            </div>
 
-                <!-- Botones con margen superior -->
-                <div class="mt-3"> <!-- Margen superior -->
-                    <button type="submit" class="btn btn-primary" style="background-color: #CAD021; color: white;">Guardar</button>
-                    <button type="submit" class="btn btn-secondary" formaction="confirmacion_reserva.php">Finalizar reserva</button>
-                    <a href="index.php" class="btn btn-danger">Cancelar reserva</a>
-                </div>
-            </form>
-        </div>
+            <!-- Campo del tercer jugador con margen -->
+            <div class="player mb-3"> <!-- Margen inferior para espacio -->
+                <label for="username3">Nombre jugador 3:</label>
+                <input va="username3" type="text" name="username" placeholder="Nombre" required>
+            </div>
+
+            <!-- Botones con margen superior -->
+            <div class="mt-3"> <!-- Margen superior -->
+                <button type="submit" class="btn btn-primary" style="background-color: #CAD021; color: white;">Guardar</button> <!-- Botón verde -->
+                <button type="submit" class="btn btn-secondary" formaction="confirmacion_reserva.php">Finalizar reserva</button> <!-- Botón secundario -->
+                <a href="index.php" class="btn btn-danger">Cancelar reserva</a> <!-- Botón para cancelar -->
+            </div>
+        </form>
     </div>
+</div>
+
+<!-- Bootstrap JS y dependencias -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
 
     <!-- Footer -->
     <footer class="footer bg-dark text-center text-white p-4"> <!-- Fondo oscuro -->
