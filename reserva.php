@@ -1,6 +1,10 @@
 <?php
 include 'conexion.php';
 session_start();
+if (!isset($_SESSION["iduser"])) {
+    header("Location: login");
+    exit();
+}
 $iduser = $_SESSION["iduser"];
 $_SESSION["idpista"] = $_GET["idcourt"];
 //traer horas de la base de datos

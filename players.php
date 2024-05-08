@@ -87,9 +87,8 @@ if (!isset($_SESSION["idreserva"])) {
 
 
     <div class="text-center"> <!-- Centrar el contenido -->
-        <h2>Reserva de pista y horario</h2>
         <!-- Formulario centrado con margen -->
-        <h2>Agregar jugadores:</h2>
+        <h1 id="jugador">Agregar jugadores:</h1>
         <form action="newplayer.php" method="post" class="text-center" style="margin: 20px;"> <!-- Espacio para el formulario -->
             <!-- Campo del primer jugador con margen -->
             <div class="player mb-3"> <!-- Margen inferior para espacio -->
@@ -110,7 +109,7 @@ if (!isset($_SESSION["idreserva"])) {
             </div>
 
             <!-- Botones con margen superior -->
-            <div class="mt-3"> <!-- Margen superior -->
+            <div class="mt-4"> <!-- Margen superior -->
                 <button type="submit" class="btn btn-primary" style="background-color: #CAD021; color: white;">Guardar</button> <!-- Botón verde -->
                 <button type="submit" class="btn btn-secondary" formaction="confirmacion_reserva.php">Finalizar reserva</button> <!-- Botón secundario -->
                 <a href="index.php" class="btn btn-danger">Cancelar reserva</a> <!-- Botón para cancelar -->
