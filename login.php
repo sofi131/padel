@@ -42,36 +42,12 @@ if (isset($_POST["email"])) {
     <title>Inicio de Sesión - Padel App</title>
     <!-- Incluyendo Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        /* Color verde personalizado */
-        .btn-green {
-            background-color: #CAD021; /* Verde */
-            color: white; /* Texto blanco */
-        }
-
-        .btn-green:hover {
-            background-color: darkgreen; /* Color al pasar el mouse */
-        }
-
-        /* Formulario con bordes y color de fondo */
-        .login-form {
-            background-color: black; /* Fondo negro */
-            padding: 20px; /* Espacio interno */
-            border-radius: 10px; /* Bordes redondeados */
-        }
-
-        .login-form .form-control {
-            background-color: white; /* Fondo blanco para inputs */
-            border-color: #CAD021; /* Borde verde */
-        }
-
-        .login-form .form-label {
-            color: white; /* Texto blanco */
-        }
-    </style>
+  <link rel="stylesheet" href="assets/css/login.css">
 </head>
 
 <body class="d-flex flex-column min-vh-100"> <!-- Flex para mantener el footer al fondo -->
+ <!-- Superposición negra con opacidad -->
+ <div class="body-overlay"></div> <!-- Capa de superposición -->
 
     <div class="container vh-100 d-flex justify-content-center align-items-center"> <!-- Centrar vertical y horizontal -->
         <div class="col-md-6 login-form"> <!-- Aplicar estilo de formulario -->
