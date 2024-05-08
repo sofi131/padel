@@ -68,7 +68,7 @@
 
                 <!-- Botones con margen superior -->
                 <div class="mt-3"> <!-- Margen superior -->
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="submit" class="btn btn-primary" style="background-color: #CAD021; color: white;">Guardar</button>
                     <button type="submit" class="btn btn-secondary" formaction="confirmacion_reserva.php">Finalizar reserva</button>
                     <a href="index.php" class="btn btn-danger">Cancelar reserva</a>
                 </div>
