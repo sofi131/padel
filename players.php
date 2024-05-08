@@ -1,5 +1,7 @@
-
 <?php
+//el valor de la opcion de hora se manda el id y la fecha si se manda el value
+
+//agregar reserva
 include 'conexion.php';
 session_start();
 if (isset($_POST["fecha"])) {
@@ -30,22 +32,22 @@ if (!isset($_SESSION["idreserva"])) {
     $idreserva = $_SESSION["idreserva"];
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/player.css">
-    <title>Player</title>
+    <title>Document</title>
 </head>
-<body>
-        
-        <h2>Reserva de pista y horario</h2>
-        <p>Pista seleccionada: <?php echo $idpista; ?></p>
-        <p>Fecha seleccionada: <?php echo $fecha; ?></p>
 
-    <h2>Agregar jugadores:</h2>
+<body>
+
+<h2>Reserva de pista y horario</h2>
+    <p>Pista seleccionada: <?php echo $idpista; ?></p>
+    <p>Fecha seleccionada: <?php echo $fecha; ?></p>
+
+    
 
     <form method="post" action="newplayer">
         <label for="username1">Ingrese un usuario </label>
@@ -53,14 +55,10 @@ if (!isset($_SESSION["idreserva"])) {
 
         <input type="submit" value="Enviar">
     </form>
-    <button type="submit" formaction="confirmacion_reserva.php">Finalizar reserva</button>
     <?php
-            if(isset($error)){
-                echo "<p>".$error."</p>";
-            }
+    if(isset($_SESSION["error"])) echo $_SESSION["error"];
     ?>
+
 </body>
+
 </html>
-
-
-
