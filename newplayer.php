@@ -18,7 +18,6 @@ if (isset($_SESSION["username"]) && isset($_SESSION["idreserva"])) {
 
         if ($total_players == 4) {
             $error = "No se puede agregar otro jugador, ya hay 4 jugadores en esta reserva.";
-            $_SESSION["total"] = $total_players;
             $_SESSION["error"] = $error;
             unset($_SESSION["idreserva"]);
             header("Location: ./");
@@ -30,9 +29,23 @@ if (isset($_SESSION["username"]) && isset($_SESSION["idreserva"])) {
             $result->bindParam(2, $idreserva);
             $result->bindParam(3, $username);
             $result->execute();
+            $i = 2;
+            do {
+                $jugador = "username" . $i;
+                if (isset($_POST[$jugador])) {
+                    if ($_POST[$jugador] != "") {
+                        $nombre = $_POST[$jugador];
+                        $sql = "insert into play (iduser,idreservation,username) values (?,?,?)";
+                        $result = $conn->prepare($sql);
+                        $result->bindParam(1, $iduser);
+                        $result->bindParam(2, $idreserva);
+                        $result->bindParam(3, $nombre);
+                        $result->execute();
+                    }
+                }
+                $i++;
+            } while ($i <= 4);
         }
-
-
 
         if ($result->rowCount() == 1) {
             header('Location: players');
