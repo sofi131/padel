@@ -1,7 +1,7 @@
 <?php
 include 'conexion.php';
 session_start();
-$iduser= $_SESSION["iduser"];
+$iduser = $_SESSION["iduser"];
 //traer horas de la base de datos
 $sql = "select * from timetable";
 $stm = $conn->prepare($sql);
@@ -22,29 +22,31 @@ $result = $stm->fetchAll(PDO::FETCH_ASSOC);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/styles.css" rel="stylesheet"> <!-- Vínculo al archivo CSS -->
 </head>
+
 <body class="d-flex flex-column min-vh-100"> <!-- Flex para mantener footer al fondo -->
 
     <!-- Barra de Navegación -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top"> <!-- Navbar blanco -->
-        <a class="navbar-brand d-flex align-items-center" href="/"> <!-- Logo e imagen -->
-            <img src="https://assets-global.website-files.com/6127fb2c77e53513fea9657c/612d38df9b48bca5bd62f48b_padel-tech-logo.png" alt="Logo" width="200" height="auto" class="me-2"> <!-- Tamaño del logo -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <img src="https://assets-global.website-files.com/6127fb2c77e53513fea9657c/612d38df9b48bca5bd62f48b_padel-tech-logo.png" alt="Logo" width="200" height="auto" class="me-2">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto"> <!-- Menú alineado a la derecha -->
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Inicio</a>
+                    <a class="nav-link" href="players.php">Players</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/players">Players</a>
+                    <a class="nav-link" href="reserva.php">Reservas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/reservas">Reservas</a>
+                    <a class="nav-link" href="usuario.php">Usuario</a>
+                </li>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contacto</a>
+                    <a class="nav-link" href="contacto.php">Contacto</a>
                 </li>
             </ul>
         </div>
@@ -52,47 +54,47 @@ $result = $stm->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Contenido principal -->
     <div class="flex-grow-1 text-center"> <!-- Flex-grow para empujar el footer hacia abajo -->
-    <h1>Reserva</h1>
-    <?php
-    if(isset($_POST["idpista"])){
-        $_SESSION["idpista"]=$_POST["idpista"];
-        echo "el id de la pista es ".$_POST["idpista"];
-    }
-    ?>
-
-<form action="players" method="post">
-    <div>
-        <label for="fecha">Fecha:</label>
-        <input type="date" id="fecha" name="fecha" required>
-    </div>
-    <div>
-        <label>Selecciona una opción:</label>
+        <h1>Reserva</h1>
         <?php
-
-        foreach ($result as $opcion) {
-            echo '<div>
-            <input type="radio" id="opcion_' . $opcion["idtimetable"] . '" name="opcion" value="' . $opcion["idtimetable"] . '">
-            <label for="opcion_' . $opcion["idtimetable"] . '">'. $opcion["time"] . '</label>
-            </div>';
+        if (isset($_POST["idpista"])) {
+            $_SESSION["idpista"] = $_POST["idpista"];
+            echo "el id de la pista es " . $_POST["idpista"];
         }
         ?>
-    </div>
-    <div>
-        <button type="submit" name="accion" value="seleccionar">Seleccionar</button>
-    </div>
-    
-</form>
+
+        <form action="players" method="post">
+            <div>
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" required>
+            </div>
+            <div>
+                <label>Selecciona una opción:</label>
+                <?php
+
+                foreach ($result as $opcion) {
+                    echo '<div>
+            <input type="radio" id="opcion_' . $opcion["idtimetable"] . '" name="opcion" value="' . $opcion["idtimetable"] . '">
+            <label for="opcion_' . $opcion["idtimetable"] . '">' . $opcion["time"] . '</label>
+            </div>';
+                }
+                ?>
+            </div>
+            <div>
+                <button type="submit" name="accion" value="seleccionar">Seleccionar</button>
+            </div>
+
+        </form>
 
 
-    <form method="post" action="newplayer">
-        <label for="username1">Ingrese un usuario </label>
-        <input type="text" id="username" name="username" required><br><br>
+        <form method="post" action="newplayer">
+            <label for="username1">Ingrese un usuario </label>
+            <input type="text" id="username" name="username" required><br><br>
 
-        <input type="submit" value="Enviar">
-    </form>
-    <?php
-    if(isset($_SESSION["error"])) echo $error;
-    ?>
+            <input type="submit" value="Enviar">
+        </form>
+        <?php
+        if (isset($_SESSION["error"])) echo $error;
+        ?>
     </div>
 
     <!-- Footer -->
@@ -107,4 +109,5 @@ $result = $stm->fetchAll(PDO::FETCH_ASSOC);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
