@@ -1,14 +1,12 @@
-<?php
-//el valor de la opcion de hora se manda el id y la fecha si se manda el value
 
-//agregar reserva
+<?php
 include 'conexion.php';
 session_start();
 if (isset($_POST["fecha"])) {
     $_SESSION["fecha"] =  $_POST["fecha"];
     $_SESSION["opcion"] = $_POST["opcion"];
 }
-var_dump($_SESSION['iduser']);
+
 if (!isset($_SESSION["idreserva"])) {
     if (isset($_SESSION['fecha']) && isset($_SESSION["opcion"])) {
         $fecha = $_SESSION["fecha"];
@@ -32,6 +30,10 @@ if (!isset($_SESSION["idreserva"])) {
     $idreserva = $_SESSION["idreserva"];
 }
 ?>
+
+
+
+
 <!--mi parte-->
 <!DOCTYPE html>
 <html lang="en">
@@ -71,23 +73,43 @@ if (!isset($_SESSION["idreserva"])) {
         </div>
     </nav>
 
-    <!-- Contenido principal -->
-    <div class="flex-grow-1 text-center"> <!-- Flex-grow para empujar el footer hacia abajo -->
-    <h1>Players</h1>
-    <input type="text" name="fecha" value="<?php echo $_POST['fecha'] ?? ''; ?>">
-    <input type="text" name="opcion" value="<?php echo $_POST['opcion'] ?? ''; ?>">
+    <!-- Contenido principal PARA ELEGIR PISTA Y JUGADORES-->
+    <h2>Reserva de pista y horario</h2>
+        <p>Pista seleccionada: <?php echo $idpista; ?></p>
+        <p>Fecha seleccionada: <?php echo $fecha; ?></p>
 
+    <h2>Agregar jugadores:</h2>
 
-    <form method="post" action="newplayer">
-        <label for="username1">Ingrese un usuario </label>
-        <input type="text" id="username" name="username" required><br><br>
+    <form action="newplayer.php" method="post">
+        <div class="player">
+            <input type="hidden" name="iduser1" >
+            <label for="username1">Nombre jugador 1:</label>
+            <input type="text" name="username" id="username1" placeholder="Nombre" required>
+        </div>
 
-        <input type="submit" value="Enviar">
+        <div class="player">
+            <input type="hidden" name="iduser2" >
+            <label for="username2">Nombre jugador 2:</label>
+            <input type="text" name="username" id="username2" placeholder="Nombre" required>
+        </div>
+
+        <div class="player">
+            <input type="hidden" name="iduser3" >
+            <label for="username3">Nombre jugador 3:</label>
+            <input type="text" name="username" id="username3" placeholder="Nombre" required>
+        </div>
+
+        <button type="submit">Guardar</button>
+        <button type="submit" formaction="confirmacion_reserva.php">Finalizar reserva</button>
+        <div class="button-container">
+        <a href="index.php" class="button cancel-button">Cancelar reserva</a>
+        </div>
     </form>
     <?php
-    if(isset($_SESSION["error"])) echo $error;
+            if(isset($error)){
+                echo "<p>".$error."</p>";
+            }
     ?>
-    </div>
 
     <!-- Footer -->
     <footer class="footer bg-dark text-center text-white p-4"> <!-- Fondo oscuro -->
