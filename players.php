@@ -42,13 +42,7 @@ if (!isset($_SESSION["idreserva"])) {
 </head>
 
 <body>
-
-    <h2>Reserva de pista y horario</h2>
-    <p>Pista seleccionada: <?php echo $idpista; ?></p>
-    <p>Fecha seleccionada: <?php echo $fecha; ?></p>
-
-
-
+    
     <form method="post" action="newplayer">
 
         <input type="hidden" name="idpista" value="<?php echo isset($idpista) ? $idpista : ''; ?>">
