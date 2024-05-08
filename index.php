@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    $iduser= $_SESSION["iduser"];
     include("conexion.php");
     $sql = "select * from court";
     $query = $conn->prepare($sql);
@@ -24,7 +26,7 @@
                         <h2><?php echo $court['name']; ?></h2>
                         <img src="assets/img/<?php echo $court['image']; ?>" class="card-img-top" alt="<?php echo $court['name']; ?>">
                         <div class="card-body">
-                            <a href="reservar.php?idcourt=<?php echo $court['idcourt']; ?>" class="btn btn-primary">Reserve this court</a>
+                        <a href="reservar.php?idcourt=<?php echo $court['idcourt']; ?>" class="btn btn-primary">Reserve this court</a>
                         </div>
                     </div>
                 </div>
