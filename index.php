@@ -89,7 +89,7 @@ $results = $query->fetchAll(PDO::FETCH_ASSOC);
                                     <?php endif; ?>
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo htmlspecialchars($court['name'], ENT_QUOTES, 'UTF-8'); ?></h5>
-                                        <a href="reserva.php?idcourt=<?php echo intval($court['idcourt']); ?>" class="btn" styl e="background-color: #CAD021; color: white;">Reservar esta cancha</a>
+                                        <a href="reserva.php?idcourt=<?php echo intval($court['idcourt']); ?>" class="btn" style="background-color: #CAD021; color: white;">Reservar esta cancha</a>
                                     </div>
                                 </div>
                             </div>
