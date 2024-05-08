@@ -1,47 +1,65 @@
-/* Color verde personalizado para botones */
-.btn-green2 {
-    background-color: #CAD021; /* Verde */
-    color: white; /* Texto blanco */
-    border: 2px solid white; /* Borde blanco para contraste */
-}
+      /* Color verde personalizado */
+      .btn-green {
+          background-color: #CAD021;
+          /* Verde */
+          color: white;
+          /* Texto blanco */
+          border: 2px solid white;
+          /* Borde blanco para contraste */
+      }
 
-.btn-green2:hover {
-    background-color: #B0D15B; /* Cambio de color al pasar el mouse */
-}
+      .btn-green:hover {
+          background-color: #B0D15B;
+          /* Cambio de color al pasar el mouse */
+      }
 
-/* Fondo con imagen en blanco y negro y superposición negra */
-body {
-    background-image: url('../img/portada_inicio.jpg'); /* Imagen de fondo */
-    background-size: cover; /* Cubrir todo el fondo */
-    background-position: center; /* Centrar la imagen */
-    background-attachment: fixed; /* Fondo fijo */
-    filter: grayscale(100%); /* Escala de grises */
-    color: white; /* Texto blanco */
-}
+      /* Fondo con imagen en blanco y negro */
+      body {
+          background-image: url('../img/portada_inicio.jpg');
+          /* Imagen de fondo */
+          background-size: cover;
+          /* Cubrir todo el fondo */
+          background-position: center;
+          /* Centrar la imagen */
+          background-attachment: fixed;
+          /* Escala de grises */
+          color: white;
+          /* Texto blanco */
+      }
 
-.body-overlay {
-    position: absolute; /* Superposición sobre el fondo */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Superposición negra con opacidad */
-    z-index: 0; /* Asegura que esté detrás del contenido */
-}
+      .body-overlay {
+          position: absolute;
+          /* Superposición sobre el fondo */
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(73, 72, 72, 0.534);
+          /* Superposición negra con opacidad */
+          z-index: 0;
+          /* Asegura que esté detrás del contenido */
+      }
 
-/* Estilo para formulario con fondo negro y bordes redondeados */
-.form-container {
-    background-color: rgba(0, 0, 0, 0.8); /* Fondo negro con transparencia */
-    padding: 20px; /* Espacio interno */
-    border-radius: 10px; /* Bordes redondeados */
-    color: white; /* Texto blanco */
-}
+      /* Estilo para formulario con fondo negro y bordes redondeados */
+      .form-container {
+          background-color: rgba(0, 0, 0, 0.8);
+          /* Fondo negro con transparencia */
+          padding: 20px;
+          /* Espacio interno */
+          border-radius: 10px;
+          /* Bordes redondeados */
+          color: white;
+          /* Texto blanco */
+      }
 
-.form-container .form-control {
-    background-color: white; /* Fondo blanco para inputs */
-    border-color: #CAD021; /* Borde verde */
-}
+      .form-container .form-control {
+          background-color: white;
+          /* Fondo blanco para inputs */
+          border-color: #CAD021;
+          /* Borde verde */
+      }
 
-.form-container .form-label {
-    color: white; /* Texto blanco */
-}
+      .form-container .form-label {
+          color: white;
+          /* Texto blanco */
+      }

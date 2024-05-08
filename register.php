@@ -74,7 +74,7 @@ if (isset($_POST["username"])) {
             </div>
            
             <!-- Botón verde -->
-            <button type="submit" class="btn btn-green2 btn-block">Registrarse</button> <!-- Botón verde -->
+            <button type="submit" class="btn btn-green btn-block">Registrarse</button> <!-- Botón verde -->
         </form>
         
         <!-- Opciones adicionales -->
