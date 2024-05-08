@@ -1,15 +1,15 @@
-/* Color verde personalizado */
-.btn-green {
+/* Color verde personalizado para botones */
+.btn-green2 {
     background-color: #CAD021; /* Verde */
     color: white; /* Texto blanco */
     border: 2px solid white; /* Borde blanco para contraste */
 }
 
-.btn-green:hover {
+.btn-green2:hover {
     background-color: #B0D15B; /* Cambio de color al pasar el mouse */
 }
 
-/* Fondo con imagen en blanco y negro */
+/* Fondo con imagen en blanco y negro y superposición negra */
 body {
     background-image: url('../img/portada_inicio.jpg'); /* Imagen de fondo */
     background-size: cover; /* Cubrir todo el fondo */
@@ -25,7 +25,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(73, 72, 72, 0.534); /* Superposición negra con opacidad */
+    background-color: rgba(0, 0, 0, 0.5); /* Superposición negra con opacidad */
     z-index: 0; /* Asegura que esté detrás del contenido */
 }
 

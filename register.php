@@ -1,3 +1,39 @@
+<?php
+session_start();
+$msg = null;
+
+if (isset($_POST["username"])) {
+    include("conexion.php");
+    $username = $_POST["username"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    // Se puede agregar el manejo del archivo si se requiere cargar una imagen
+    /*
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["file"]["name"]);
+    $image_uploaded = move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
+
+    if ($image_uploaded) {
+        $sql = "INSERT INTO user (username, email, password, image) VALUES (?, ?, ?, ?)";
+        $stm = $conn->prepare($sql);
+        $stm->bindParam(1, $username);
+        $stm->bindParam(2, $email);
+        $stm->bindParam(3, $password);
+        $stm->bindParam(4, $target_file);
+        $stm->execute();
+
+        if ($stm->rowCount() > 0) {
+            $msg = "Usuario creado correctamente";
+        } else {
+            $msg = "Error al crear el usuario";
+        }
+    } else {
+        $msg = "Error al subir la imagen";
+    }
+    */
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -38,7 +74,7 @@
             </div>
            
             <!-- Botón verde -->
-            <button type="submit" class="btn btn-green btn-block">Registrarse</button> <!-- Botón verde -->
+            <button type="submit" class="btn btn-green2 btn-block">Registrarse</button> <!-- Botón verde -->
         </form>
         
         <!-- Opciones adicionales -->
