@@ -84,8 +84,6 @@ if (!isset($_SESSION["idreserva"])) {
         </div>
 <!-- Contenido principal centrado -->
 <div class="flex-grow-1 d-flex justify-content-center align-items-center"> <!-- Centro horizontal y vertical -->
-
-
     <div class="text-center"> <!-- Centrar el contenido -->
         <!-- Formulario centrado con margen -->
         <h1 id="jugador">Agregar jugadores:</h1>
