@@ -1,37 +1,25 @@
 <?php
 session_start();
 $msg = null;
-
+include ("conexion.php");
+//Funcion de registro
 if (isset($_POST["username"])) {
-    include("conexion.php");
     $username = $_POST["username"];
     $email = $_POST["email"];
     $password = $_POST["password"];
-
-    // Se puede agregar el manejo del archivo si se requiere cargar una imagen
-    /*
-    $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["file"]["name"]);
-    $image_uploaded = move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
-
-    if ($image_uploaded) {
-        $sql = "INSERT INTO user (username, email, password, image) VALUES (?, ?, ?, ?)";
-        $stm = $conn->prepare($sql);
-        $stm->bindParam(1, $username);
-        $stm->bindParam(2, $email);
-        $stm->bindParam(3, $password);
-        $stm->bindParam(4, $target_file);
-        $stm->execute();
-
-        if ($stm->rowCount() > 0) {
-            $msg = "Usuario creado correctamente";
-        } else {
-            $msg = "Error al crear el usuario";
-        }
+    $sql = "insert into user (username,email,password) values(?,?,?)";
+    $stm = $conn->prepare($sql);
+    $stm->bindParam(1, $username);
+    $stm->bindParam(2, $email);
+    $stm->bindParam(3, $password);
+    $stm->execute();
+    if ($stm->rowCount() > 0) {
+        header("Location: login");
     } else {
-        $msg = "Error al subir la imagen";
+        $error = "No se ha podido crear el usuario";
     }
-    */
+} else {
+    $error = "No hay datos para enviar";
 }
 ?>
 <!DOCTYPE html>
