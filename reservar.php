@@ -1,7 +1,11 @@
 <?php
 include("conexion.php");
 session_start();
-$iduser = $_SESSION["iduser"];
+
+if(isset($_SESSION["iduser"])){
+    header("Location: login.jsp");
+    exit();
+}
 if (isset($_GET["idcourt"])) {
     $idcourt = $_GET["idcourt"];
 }
