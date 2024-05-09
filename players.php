@@ -4,9 +4,8 @@ session_start();
 
 $success = false;
 
-if (isset($_POST["username1"]) && isset($_POST["username2"]) && isset($_POST["username3"]) && isset($_POST["username4"])) {
-    $success = true;
-    // Aquí puedes agregar la lógica para guardar los datos en la base de datos
+if (isset($_POST["username1"])) { // Se verifica si el primer campo tiene valor
+    // Aquí puedes agregar la lógica para guardar datos en la base de datos
     if (!isset($_SESSION["idreserva"])) {
         if (isset($_SESSION['fecha']) && isset($_SESSION["opcion"])) {
             $fecha = $_SESSION["fecha"];
@@ -21,7 +20,7 @@ if (isset($_POST["username1"]) && isset($_POST["username2"]) && isset($_POST["us
             if ($result->rowCount() == 1) {
                 $idreserva = $conn->lastInsertId();
                 $_SESSION["idreserva"] = $idreserva;
-                $success = true; // La reserva se completó
+                $success = true; // La reserva se completó con éxito
             } else {
                 $success = false;
             }
@@ -32,7 +31,6 @@ if (isset($_POST["username1"]) && isset($_POST["username2"]) && isset($_POST["us
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <title>Players</title>
@@ -52,13 +50,6 @@ if (isset($_POST["username1"]) && isset($_POST["username2"]) && isset($_POST["us
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link">
-                        <?php
-                        if (isset($_SESSION["username"])) {
-                            echo $_SESSION["username"];
-                        } ?></a>
-                </li>
                 <li class="nav-item"><a class="nav-link" href="players.php">Players</a></li>
                 <li class="nav-item"><a class="nav-link" href="reserva.php">Reservas</a></li>
                 <li class="nav-item"><a class="nav-link" href="usuario.php">Usuario</a></li>
@@ -82,25 +73,24 @@ if (isset($_POST["username1"]) && isset($_POST["username2"]) && isset($_POST["us
             <h1 id="jugador">Agregar jugadores:</h1>
             <form action="newplayer" method="post" class="text-center" style="margin: 20px;">
                 <div class="player mb-3">
-                    <label for="username1">Nombre jugador 1:</label>
+                    <label para="username1">Nombre jugador 1:</label>
                     <input type="text" name="username" placeholder="Nombre" required>
                 </div>
                 <div class="player mb-3">
-                    <label for="username2">Nombre jugador 2:</label>
+                    <label para="username2">Nombre jugador 2:</label>
                     <input type="text" name="username2" placeholder="Nombre">
                 </div>
                 <div class="player mb-3">
-                    <label for="username3">Nombre jugador 3:</label>
+                    <label para="username3">Nombre jugador 3:</label>
                     <input type="text" name="username3" placeholder="Nombre">
                 </div>
                 <div class="player mb-3">
-                    <label for="username4">Nombre jugador 4:</label>
+                    <label para="username4">Nombre jugador 4:</label>
                     <input type="text" name="username4" placeholder="Nombre">
                 </div>
-                <!-- Botones -->
                 <div class="mt-4">
-                    <!-- Botón que activa el modal -->
-                    <button type="submit" class="btn btn-secondary" style="background-color: #CAD021; color: white;">Finalizar reserva</button>
+
+                    <button type="submit" class="btn btn-secondary" formaction="confirmacion_reserva.php" style="background-color: #CAD021; color: white;">Finalizar reserva</button>
                     <a href="index.php" class="btn btn-danger">Cancelar reserva</a>
                 </div>
             </form>
@@ -116,25 +106,7 @@ if (isset($_POST["username1"]) && isset($_POST["username2"]) && isset($_POST["us
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ¡Pista guardada con éxito!
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal para error -->
-    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="errorModalLabel">Error</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ¡Por favor, complete todos los campos antes de continuar!
+                    ¡Reserva guardada con éxito!
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -153,8 +125,6 @@ if (isset($_POST["username1"]) && isset($_POST["username2"]) && isset($_POST["us
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/players.js"></script>
-
+    <script src="assets/js/players.js"></script> <!-- Archivo para control de JavaScript -->
 </body>
-
 </html>
