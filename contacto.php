@@ -1,42 +1,8 @@
-<?php
-session_start();
-include("conexion.php");
-$email = $_SESSION["email"];
-$password = $_SESSION["password"];
-$username = $_SESSION["username"];
-$iduser = $_SESSION["iduser"];
-if (isset($_POST["username"])) {
-    $newname = $_POST["username"];
-    $newemail = $_POST["email"];
-    $newpassword = $_POST["password"];
-    $sql = 'UPDATE user 
-    SET username = ?, email = ?, password = ? 
-    WHERE iduser = ?';
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(1, $newname);
-    $stmt->bindParam(2, $newemail);
-    $stmt->bindParam(3, $newpassword);
-    $stmt->bindParam(4, $iduser);
-    $stmt->execute();
-    if ($stmt->rowCount() > 0) {
-        echo "Usuario actualizado con éxito";
-        $_SESSION["username"] = $newname;
-        $_SESSION["email"] = $newemail;
-        $_SESSION["password"] = $newpassword;
-        header("Location: " . $_SERVER['PHP_SELF']); // Recargar la misma página
-        exit(); // Asegurarse de que no haya más ejecución de código después del header
-    } else {
-        echo "No se realizó ninguna actualización";
-    }
-}
-
-?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
-    <title>Actualizar Información del Usuario - Padel App</title>
+    <title>Contacto - Padel App</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> <!-- Bootstrap CSS -->
     <link href="assets/css/styles.css" rel="stylesheet"> <!-- CSS personalizado -->
 </head>
@@ -65,31 +31,35 @@ if (isset($_POST["username"])) {
     <div class="jumbotron text-center">
         <div class="overlay"></div>
         <div class="content">
-            <h1>Actualiza tu <i>información</i></h1>
-            <p class="lead" style="font-weight: bold;">Mantén tus datos al día para una mejor experiencia.</p>
+            <h1>¿Necesitas nuestra ayuda?</h1>
+            <p class="lead" style="font-weight: bold;">Estamos aquí para ayudarte con cualquier pregunta o problema.</p>
         </div>
     </div>
 
-    <!-- Formulario para actualizar datos del usuario -->
+    <!-- Formulario de contacto -->
     <div class="flex-grow-1 d-flex justify-content-center align-items-center"> <!-- Centro horizontal y vertical -->
         <div class="col-md-6"> <!-- Ancho del formulario -->
-            <h3 class="text-center">Tus datos de usuario</h3> <!-- Título para el formulario -->
-            <form method="POST" action=""> <!-- Cambia a la ruta correcta -->
+            <h3 class="text-center">Formulario de Contacto</h3> <!-- Título para el formulario -->
+            <form method="POST" action="send_contact.php"> <!-- Cambia a la ruta correcta -->
                 <div class="form-group mb-3"> <!-- Margen entre campos -->
-                    <label for="username">Nombre de Usuario</label>
-                    <input type="text" class="form-control" id="username" name="username" value="<?php echo $username ?>" placeholder="Nuevo nombre de usuario">
+                    <label for="name">Nombre</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Tu nombre" required>
                 </div>
                 <div class="form-group mb-3"> <!-- Margen entre campos -->
                     <label para="email">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" placeholder="Nuevo correo electrónico">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Tu correo electrónico" required>
                 </div>
                 <div class="form-group mb-3"> <!-- Margen entre campos -->
-                    <label para="password">Nueva Contraseña</label>
-                    <input type="password" class="form-control" id="password" name="password" value="<?php echo $password ?>" placeholder="Nueva contraseña">
+                    <label para="subject">Asunto</label>
+                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Asunto" required>
                 </div>
-
-                <!-- Botón para actualizar con margen para separación -->
-                <button type="submit" class="btn btn-primary mt-3" style="background-color: #CAD021; color: white;">Actualizar</button>
+                <div class="form-group mb-3"> <!-- Margen entre campos -->
+                    <label para="message">Mensaje</label>
+                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Escribe tu mensaje aquí" required></textarea>
+                </div>
+               
+                <!-- Botón para enviar el formulario con margen -->
+                <button type="submit" class="btn btn-primary mt-3" style="background-color: #CAD021; color: white;">Enviar</button>
             </form>
         </div>
     </div>
@@ -104,7 +74,5 @@ if (isset($_POST["username"])) {
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/players.js"></script> <!-- Archivo para control de JavaScript -->
 </body>
-
 </html>

@@ -1,11 +1,19 @@
 <?php
 session_start();
 include "conexion.php";
-$sql_pistas = "SELECT R.idreservation,R.idtimetable,R.idcourt,c.name,c.img,t.time,r.playdate,count(*) as Players 
-FROM padel.reservation R inner join play P on R.idreservation=P.idreservation 
-join court c on R.idcourt=c.idcourt join timetable t on R.idtimetable=t.idtimetable 
-group by p.idreservation,R.idreservation,R.idtimetable,R.idcourt,c.name,c.img,t.time,R.playdate
-having Players<4";
+$sql_pistas = "SELECT R.idreservation, R.idtimetable, R.idcourt, c.name, c.img, t.time, r.playdate, 
+COUNT(*) AS Players, (4 - COUNT(*)) AS espacios_libres
+FROM padel.reservation R 
+INNER JOIN play P ON R.idreservation = P.idreservation 
+JOIN court c ON R.idcourt = c.idcourt 
+JOIN timetable t ON R.idtimetable = t.idtimetable 
+JOIN (
+SELECT idreservation, COUNT(*) AS num_players
+FROM play
+GROUP BY idreservation
+) AS player_counts ON R.idreservation = player_counts.idreservation
+GROUP BY R.idreservation, R.idtimetable, R.idcourt, c.name, c.img, t.time, r.playdate
+HAVING Players < 4;";
 $stm = $conn->prepare($sql_pistas);
 $stm->execute();
 $pistas = $stm->fetchAll(PDO::FETCH_ASSOC);
@@ -71,9 +79,12 @@ if(isset($_POST["idreserva"])){
     <div class="pistas">
         <?php
         foreach ($pistas as $pista) {
+            $espacios_libres = $pista["espacios_libres"];
+            $texto_espacios = ($espacios_libres == 1) ? "espacio libre" : "espacios libres";
             echo '<div class="pista">
-            <img src="' . $pista["img"] . '" alt="Imagen de la pista">
+            <img src="' . (isset($pista["img"]) ? $pista["img"] : "./assets/img/cover.jpg") . '" alt="Imagen de la pista" style=" width: 100px; height: auto;">
             <p>' . $pista["name"] . '</p>
+            <p>En esta partida hay ' . $espacios_libres . ' ' . $texto_espacios . '</p>
             <form action="" method="post">
             <p>'. $pista['time'] .'</p>
             <p>'. $pista['playdate'] .'</p>
@@ -86,41 +97,6 @@ if(isset($_POST["idreserva"])){
             </div>';
         }
         ?>
-    </div>
-
-<form action="players" method="post">
-    <div>
-        <label for="fecha">Fecha:</label>
-        <input type="date" id="fecha" name="fecha" required>
-    </div>
-    <div>
-        <label>Selecciona una opción:</label>
-        <?php
-
-        foreach ($result as $opcion) {
-            echo '<div>
-            <input type="radio" id="opcion_' . $opcion["idtimetable"] . '" name="opcion" value="' . $opcion["idtimetable"] . '">
-            <label for="opcion_' . $opcion["idtimetable"] . '">'. $opcion["time"] . '</label>
-            </div>';
-        }
-        ?>
-    </div>
-    <div>
-        <button type="submit" name="accion" value="seleccionar">Seleccionar</button>
-    </div>
-    
-</form>
-
-
-    <form method="post" action="newplayer">
-        <label for="username1">Ingrese un usuario </label>
-        <input type="text" id="username" name="username" required><br><br>
-
-        <input type="submit" value="Enviar">
-    </form>
-    <?php
-    if(isset($_SESSION["error"])) echo $error;
-    ?>
     </div>
 
     <!-- Footer -->

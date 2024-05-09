@@ -21,6 +21,8 @@ if (isset($_POST["email"])) {
             $username = $result["username"];
             $iduser = $result["iduser"];
             
+            $_SESSION["email"] = $result["email"];
+            $_SESSION["password"] = $result["password"];
             $_SESSION["username"] = $username;
             $_SESSION["iduser"] = $iduser;
             
