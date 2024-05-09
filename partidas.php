@@ -1,11 +1,19 @@
 <?php
 session_start();
 include "conexion.php";
-$sql_pistas = "SELECT R.idreservation,R.idtimetable,R.idcourt,c.name,c.img,t.time,r.playdate,count(*) as Players 
-FROM padel.reservation R inner join play P on R.idreservation=P.idreservation 
-join court c on R.idcourt=c.idcourt join timetable t on R.idtimetable=t.idtimetable 
-group by p.idreservation,R.idreservation,R.idtimetable,R.idcourt,c.name,c.img,t.time,R.playdate
-having Players<4";
+$sql_pistas = "SELECT R.idreservation, R.idtimetable, R.idcourt, c.name, c.img, t.time, r.playdate, 
+COUNT(*) AS Players, (4 - COUNT(*)) AS espacios_libres
+FROM padel.reservation R 
+INNER JOIN play P ON R.idreservation = P.idreservation 
+JOIN court c ON R.idcourt = c.idcourt 
+JOIN timetable t ON R.idtimetable = t.idtimetable 
+JOIN (
+SELECT idreservation, COUNT(*) AS num_players
+FROM play
+GROUP BY idreservation
+) AS player_counts ON R.idreservation = player_counts.idreservation
+GROUP BY R.idreservation, R.idtimetable, R.idcourt, c.name, c.img, t.time, r.playdate
+HAVING Players < 4;";
 $stm = $conn->prepare($sql_pistas);
 $stm->execute();
 $pistas = $stm->fetchAll(PDO::FETCH_ASSOC);
@@ -28,20 +36,55 @@ if(isset($_POST["idreserva"])){
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Players</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/styles.css" rel="stylesheet"> <!-- Vínculo al archivo CSS -->
 </head>
-<body>
-<div class="pistas">
+<body class="d-flex flex-column min-vh-100"> <!-- Flex para mantener footer al fondo -->
+
+    <!-- Barra de Navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top"> <!-- Navbar blanco -->
+        <a class="navbar-brand d-flex align-items-center" href="/"> <!-- Logo e imagen -->
+            <img src="https://assets-global.website-files.com/6127fb2c77e53513fea9657c/612d38df9b48bca5bd62f48b_padel-tech-logo.png" alt="Logo" width="200" height="auto" class="me-2"> <!-- Tamaño del logo -->
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto"> <!-- Menú alineado a la derecha -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/players">Players</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/reservas">Reservas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contacto</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="pistas">
         <?php
         foreach ($pistas as $pista) {
+            $espacios_libres = $pista["espacios_libres"];
+            $texto_espacios = ($espacios_libres == 1) ? "espacio libre" : "espacios libres";
             echo '<div class="pista">
-            <img src="' . $pista["img"] . '" alt="Imagen de la pista">
+            <img src="' . (isset($pista["img"]) ? $pista["img"] : "./assets/img/cover.jpg") . '" alt="Imagen de la pista" style=" width: 100px; height: auto;">
             <p>' . $pista["name"] . '</p>
+            <p>En esta partida hay ' . $espacios_libres . ' ' . $texto_espacios . '</p>
             <form action="" method="post">
             <p>'. $pista['time'] .'</p>
             <p>'. $pista['playdate'] .'</p>
@@ -55,5 +98,17 @@ if(isset($_POST["idreserva"])){
         }
         ?>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-center text-white p-4"> <!-- Fondo oscuro -->
+        <div class="container-fluid"> <!-- Ancho completo -->
+            <p class="mb-0" style="color: #CAD021;">App creada por Nico, Gabi, Sofía, Pablo y Adri</p> <!-- Texto de crédito -->
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS y dependencias -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
