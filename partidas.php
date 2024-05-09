@@ -19,19 +19,19 @@ $stm->execute();
 $pistas = $stm->fetchAll(PDO::FETCH_ASSOC);
 
 
-if(isset($_POST["idreserva"])){
-    $idreserva = $_POST ["idreserva"];
+if (isset($_POST["idreserva"])) {
+    $idreserva = $_POST["idreserva"];
     $username = $_POST["user"];
     $iduser = $_SESSION["iduser"];
     $sql = "insert into play (iduser,idreservation,username) values (?,?,?)";
     $stm = $conn->prepare($sql);
-    $stm->bindParam(1,$iduser);
-    $stm->bindParam(2,$idreserva);
-    $stm->bindParam(3,$username);
+    $stm->bindParam(1, $iduser);
+    $stm->bindParam(2, $idreserva);
+    $stm->bindParam(3, $username);
     $stm->execute();
-    if($stm->rowCount() > 0){
+    if ($stm->rowCount() > 0) {
         echo "pudiste meterte a la pista";
-    }else{
+    } else {
         echo "no pudiste entrar a la pista";
     }
 }
@@ -47,6 +47,7 @@ if(isset($_POST["idreserva"])){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/styles.css" rel="stylesheet"> <!-- Vínculo al archivo CSS -->
 </head>
+
 <body class="d-flex flex-column min-vh-100"> <!-- Flex para mantener footer al fondo -->
 
     <!-- Barra de Navegación -->
@@ -69,6 +70,9 @@ if(isset($_POST["idreserva"])){
                     <a class="nav-link" href="/reservas">Reservas</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="mis_reservas.php">Mis reservas</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/contact">Contacto</a>
                 </li>
             </ul>
@@ -86,8 +90,8 @@ if(isset($_POST["idreserva"])){
             <p>' . $pista["name"] . '</p>
             <p>En esta partida hay ' . $espacios_libres . ' ' . $texto_espacios . '</p>
             <form action="" method="post">
-            <p>'. $pista['time'] .'</p>
-            <p>'. $pista['playdate'] .'</p>
+            <p>' . $pista['time'] . '</p>
+            <p>' . $pista['playdate'] . '</p>
             <input type="hidden" name="idreserva" value="' . $pista["idreservation"] . '">
             <input type="hidden" name="idpista" value="' . $pista["idcourt"] . '">
             <label>ingresa el nombre</label>
@@ -111,4 +115,5 @@ if(isset($_POST["idreserva"])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>

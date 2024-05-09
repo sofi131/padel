@@ -79,6 +79,9 @@ $reservations = $query_reservations->fetchAll(PDO::FETCH_ASSOC);
                     <a class="nav-link" href="reserva.php">Reservas</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="mis_reservas.php">Mis reservas</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="usuario.php">Usuario</a>
                 </li>
                 </li>

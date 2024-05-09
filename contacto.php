@@ -21,6 +21,7 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="players.php">Players</a></li>
                 <li class="nav-item"><a class="nav-link" href="reserva.php">Reservas</a></li>
+                <li class="nav-item"><a class="nav-link" href="mis_reservas.php">Mis reservas</a></li>
                 <li class="nav-item"><a class="nav-link" href="usuario.php">Usuario</a></li>
                 <li class="nav-item"><a class="nav-link" href="contacto.php">Contacto</a></li>
             </ul>
