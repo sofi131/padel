@@ -1,33 +1,3 @@
-<?php
-include 'conexion.php';
-session_start();
-
-$success = false;
-
-if (isset($_POST["username1"])) { // Se verifica si el primer campo tiene valor
-    // Aquí puedes agregar la lógica para guardar datos en la base de datos
-    if (!isset($_SESSION["idreserva"])) {
-        if (isset($_SESSION['fecha']) && isset($_SESSION["opcion"])) {
-            $fecha = $_SESSION["fecha"];
-            $idtime = $_SESSION["opcion"];
-            $idpista = $_SESSION["idpista"];
-            $sql_reserva = "insert into reservation (idtimetable, idcourt, playdate) values (?,?,?)";
-            $result = $conn->prepare($sql_reserva);
-            $result->bindParam(1, $idtime);
-            $result->bindParam(2, $idpista);
-            $result->bindParam(3, $fecha);
-            $result->execute();
-            if ($result->rowCount() == 1) {
-                $idreserva = $conn->lastInsertId();
-                $_SESSION["idreserva"] = $idreserva;
-                $success = true; // La reserva se completó con éxito
-            } else {
-                $success = false;
-            }
-        }
-    }
-}
-?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -67,10 +37,14 @@ if (isset($_POST["username1"])) { // Se verifica si el primer campo tiene valor
         </div>
     </div>
 
-    <!-- Contenido principal -->
-    <div class="flex-grow-1 d-flex justify-content-center align-items-center">
+    <!-- Contenido principal con mensaje de confirmación -->
+    <div class="flex-grow-1 d-flex justify-content-center align-items-center"> <!-- Centro horizontal y vertical -->
         <div class="text-center">
-      <p>Reserva con éxito</p>
+            <h2 class="display-4">¡Tu reserva ha sido confirmada!</h2> <!-- Título grande -->
+            <p class="lead">Te esperamos en nuestras pistas. ¡Disfruta tu juego!</p> <!-- Texto de bienvenida -->
+
+            <!-- Botón para reservar de nuevo -->
+            <a href="index.php" class="btn btn-lg btn-primary" style="background-color: #CAD021; color: white;">¿Reservar de nuevo?</a> <!-- Botón para redirigir al index -->
         </div>
     </div>
 
