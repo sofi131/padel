@@ -41,7 +41,7 @@ $results = $query->fetchAll(PDO::FETCH_ASSOC);
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="partidas">Players</a>
+                    <a class="nav-link" href="partidas">Partidas</a>
                 </li>
 
                 <li class="nav-item">
