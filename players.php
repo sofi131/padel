@@ -80,15 +80,15 @@ if (!isset($_SESSION["idreserva"])) {
                     </div>
                     <div class="player mb-3">
                         <label for="username2">Nombre jugador 2:</label>
-                        <input type="text" name="username" placeholder="Nombre" required>
+                        <input type="text" name="username2" placeholder="Nombre" required>
                     </div>
                     <div class="player mb-3">
                         <label for="username3">Nombre jugador 3:</label>
-                        <input type="text" name="username" placeholder="Nombre" required>
+                        <input type="text" name="username3" placeholder="Nombre" required>
                     </div>
                     <div class="player mb-3">
                         <label for="username4">Nombre jugador 4:</label>
-                        <input type="text" name="username" placeholder="Nombre" required>
+                        <input type="text" name="username4" placeholder="Nombre" required>
                     </div>
                     <!-- Botones con margen superior -->
                     <div class="mt-4"> <!-- Margen superior -->
