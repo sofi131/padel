@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+/*document.addEventListener('DOMContentLoaded', () => {
     const guardarButton = document.querySelector('button[data-bs-target="#successModal"]'); // Botón para activar el modal
     const successModal = document.querySelector('#successModal'); // Elemento del modal de éxito
     const modalInstance = new bootstrap.Modal(successModal); // Instancia del modal de Bootstrap
@@ -25,4 +25,4 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = 'index.php'; // Redirige a la página principal
         });
     });
-});
+});*/
