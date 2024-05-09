@@ -52,7 +52,7 @@ if (isset($_POST["idreserva"])) {
 
     <!-- Barra de Navegación -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top"> <!-- Navbar blanco -->
-        <a class="navbar-brand d-flex align-items-center" href="/"> <!-- Logo e imagen -->
+        <a class="navbar-brand d-flex align-items-center" href="./"> <!-- Logo e imagen -->
             <img src="https://assets-global.website-files.com/6127fb2c77e53513fea9657c/612d38df9b48bca5bd62f48b_padel-tech-logo.png" alt="Logo" width="200" height="auto" class="me-2"> <!-- Tamaño del logo -->
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -61,19 +61,16 @@ if (isset($_POST["idreserva"])) {
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto"> <!-- Menú alineado a la derecha -->
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Inicio</a>
+                    <a class="nav-link" href="./">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/players">Players</a>
+                    <a class="nav-link" href="partidas">Players</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/reservas">Reservas</a>
+                    <a class="nav-link" href="mis_reservas">Mis reservas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="mis_reservas.php">Mis reservas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contacto</a>
+                    <a class="nav-link" href="contacto">Contacto</a>
                 </li>
             </ul>
         </div>
@@ -86,7 +83,7 @@ if (isset($_POST["idreserva"])) {
             $espacios_libres = $pista["espacios_libres"];
             $texto_espacios = ($espacios_libres == 1) ? "espacio libre" : "espacios libres";
             echo '<div class="pista">
-            <img src="' . (isset($pista["img"]) ? $pista["img"] : "./assets/img/cover.jpg") . '" alt="Imagen de la pista" style=" width: 100px; height: auto;">
+            <img src="' . (isset($pista["img"]) ? "./assets/img/" . $pista["img"] : "./assets/img/padel1.jpeg") . '" alt="Imagen de la pista" style=" width: 100px; height: auto;">
             <p>' . $pista["name"] . '</p>
             <p>En esta partida hay ' . $espacios_libres . ' ' . $texto_espacios . '</p>
             <form action="" method="post">

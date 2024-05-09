@@ -1,31 +1,33 @@
 <?php
 include 'conexion.php';
 session_start();
+if (isset($_POST["fecha"])) {
+    $_SESSION["fecha"] =  $_POST["fecha"];
+    $_SESSION["opcion"] = $_POST["opcion"];
+}
 
-$success = false;
-
-if (isset($_POST["username1"])) { // Se verifica si el primer campo tiene valor
-    // Aquí puedes agregar la lógica para guardar datos en la base de datos
-    if (!isset($_SESSION["idreserva"])) {
-        if (isset($_SESSION['fecha']) && isset($_SESSION["opcion"])) {
-            $fecha = $_SESSION["fecha"];
-            $idtime = $_SESSION["opcion"];
-            $idpista = $_SESSION["idpista"];
-            $sql_reserva = "insert into reservation (idtimetable, idcourt, playdate) values (?,?,?)";
-            $result = $conn->prepare($sql_reserva);
-            $result->bindParam(1, $idtime);
-            $result->bindParam(2, $idpista);
-            $result->bindParam(3, $fecha);
-            $result->execute();
-            if ($result->rowCount() == 1) {
-                $idreserva = $conn->lastInsertId();
-                $_SESSION["idreserva"] = $idreserva;
-                $success = true; // La reserva se completó con éxito
-            } else {
-                $success = false;
-            }
+if (!isset($_SESSION["idreserva"])) {
+    if (isset($_SESSION['fecha']) && isset($_SESSION["opcion"])) {
+        $fecha = $_SESSION["fecha"];
+        $idtime = $_SESSION["opcion"];
+        $idpista = $_SESSION["idpista"];
+       
+        $sql_reserva = "insert into reservation (idtimetable,idcourt,playdate) values (?,?,?)";
+        $result = $conn->prepare($sql_reserva);
+        $result->bindParam(1, $idtime);
+        $result->bindParam(2, $idpista);
+        $result->bindParam(3, $fecha);
+        $result->execute();
+        if ($result->rowCount() == 1) {
+            $idreserva = $conn->lastInsertId();
+            $_SESSION["idreserva"] = $idreserva;
+            echo 'salio bien';
+        } else {
+            echo 'salio mal';
         }
     }
+} else {
+    $idreserva = $_SESSION["idreserva"];
 }
 ?>
 
@@ -42,7 +44,7 @@ if (isset($_POST["username1"])) { // Se verifica si el primer campo tiene valor
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
-        <a class="navbar-brand d-flex align-items-center" href="index.php">
+        <a class="navbar-brand d-flex align-items-center" href="./">
             <img src="https://assets-global.website-files.com/6127fb2c77e53513fea9657c/612d38df9b48bca5bd62f48b_padel-tech-logo.png" alt="Logo" width="200" height="auto" class="me-2">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -50,11 +52,10 @@ if (isset($_POST["username1"])) { // Se verifica si el primer campo tiene valor
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="players.php">Players</a></li>
-                <li class="nav-item"><a class="nav-link" href="reserva.php">Reservas</a></li>
-                <li class="nav-item"><a class="nav-link" href="mis_reservas.php">Mis reservas</a></li>
-                <li class="nav-item"><a class="nav-link" href="usuario.php">Usuario</a></li>
-                <li class="nav-item"><a class="nav-link" href="contacto.php">Contacto</a></li>
+                <li class="nav-item"><a class="nav-link" href="partidas">Players</a></li>
+                <li class="nav-item"><a class="nav-link" href="mis_reservas">Mis reservas</a></li>
+                <li class="nav-item"><a class="nav-link" href="usuario">Usuario</a></li>
+                <li class="nav-item"><a class="nav-link" href="contacto">Contacto</a></li>
             </ul>
         </div>
     </nav>
@@ -91,28 +92,10 @@ if (isset($_POST["username1"])) { // Se verifica si el primer campo tiene valor
                 </div>
                 <div class="mt-4">
 
-                    <button type="submit" class="btn btn-secondary" formaction="confirmacion_reserva.php" style="background-color: #CAD021; color: white;">Finalizar reserva</button>
-                    <a href="index.php" class="btn btn-danger">Cancelar reserva</a>
+                    <button type="submit" class="btn btn-secondary" style="background-color: #CAD021; color: white;">Finalizar reserva</button>
+                    <a href="./" class="btn btn-danger">Cancelar reserva</a>
                 </div>
             </form>
-        </div>
-    </div>
-
-    <!-- Modal de éxito -->
-    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel">Reserva Exitosa</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ¡Reserva guardada con éxito!
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
         </div>
     </div>
 

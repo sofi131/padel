@@ -5,6 +5,10 @@ if (!isset($_SESSION["iduser"])) {
     header("Location: login");
     exit();
 }
+if(!isset($_GET["idcourt"])){
+    header("Location: ./");
+    exit();
+}
 $iduser = $_SESSION["iduser"];
 $_SESSION["idpista"] = $_GET["idcourt"];
 //traer horas de la base de datos
@@ -50,7 +54,7 @@ $result = $stm->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Barra de Navegación -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
-        <a class="navbar-brand d-flex align-items-center" href="index.php">
+        <a class="navbar-brand d-flex align-items-center" href="./">
             <img src="https://assets-global.website-files.com/6127fb2c77e53513fea9657c/612d38df9b48bca5bd62f48b_padel-tech-logo.png" alt="Logo" width="200" height="auto" class="me-2">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -66,18 +70,15 @@ $result = $stm->fetchAll(PDO::FETCH_ASSOC);
                     } ?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="players.php">Players</a>
+                    <a class="nav-link" href="partidas">Players</a>
                 </li>
+                <li class="nav-item"><a class="nav-link" href="mis_reservas">Mis reservas</a></li>
                 <li class="nav-item">
-                    <a class="nav-link" href="reserva.php">Reservas</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="mis_reservas.php">Mis reservas</a></li>
-                <li class="nav-item">
-                    <a class="nav-link" href="usuario.php">Usuario</a>
+                    <a class="nav-link" href="usuario">Usuario</a>
                 </li>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="contacto.php">Contacto</a>
+                    <a class="nav-link" href="contacto">Contacto</a>
                 </li>
             </ul>
         </div>

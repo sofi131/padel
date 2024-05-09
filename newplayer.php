@@ -3,7 +3,9 @@ include 'conexion.php';
 session_start();
 
 if (isset($_SESSION["username"]) && isset($_SESSION["idreserva"])) {
+
     if (isset($_POST["username"])) {
+
         $iduser = $_SESSION["iduser"];
         $idreserva = $_SESSION["idreserva"];
         $username = $_POST["username"];
@@ -32,6 +34,7 @@ if (isset($_SESSION["username"]) && isset($_SESSION["idreserva"])) {
             $i = 2;
             do {
                 $jugador = "username" . $i;
+ 
                 if (isset($_POST[$jugador])) {
                     if ($_POST[$jugador] != "") {
                         $nombre = $_POST[$jugador];
@@ -48,7 +51,7 @@ if (isset($_SESSION["username"]) && isset($_SESSION["idreserva"])) {
         }
 
         if ($result->rowCount() == 1) {
-            header('Location: players');
+            header('Location: confirmacion_reserva');
             exit; // Terminar el script después de redirigir
         }
     } else {

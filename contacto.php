@@ -11,7 +11,7 @@
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
-        <a class="navbar-brand d-flex align-items-center" href="index.php">
+        <a class="navbar-brand d-flex align-items-center" href="./">
             <img src="https://assets-global.website-files.com/6127fb2c77e53513fea9657c/612d38df9b48bca5bd62f48b_padel-tech-logo.png" alt="Logo" width="200" height="auto" class="me-2">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -19,11 +19,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="players.php">Players</a></li>
-                <li class="nav-item"><a class="nav-link" href="reserva.php">Reservas</a></li>
-                <li class="nav-item"><a class="nav-link" href="mis_reservas.php">Mis reservas</a></li>
-                <li class="nav-item"><a class="nav-link" href="usuario.php">Usuario</a></li>
-                <li class="nav-item"><a class="nav-link" href="contacto.php">Contacto</a></li>
+                <li class="nav-item"><a class="nav-link" href="partidas">Players</a></li>
+                <li class="nav-item"><a class="nav-link" href="mis_reservas">Mis reservas</a></li>
+                <li class="nav-item"><a class="nav-link" href="usuario">Usuario</a></li>
+                <li class="nav-item"><a class="nav-link" href="contacto">Contacto</a></li>
             </ul>
         </div>
     </nav>
@@ -41,7 +40,7 @@
     <div class="flex-grow-1 d-flex justify-content-center align-items-center" style="padding: 40px 0;"> <!-- Agregar margen vertical -->
         <div class="col-md-6"> <!-- Ancho del formulario -->
             <h3 class="text-center">Formulario de Contacto</h3> <!-- Título para el formulario -->
-            <form method="POST" action="send_contact.php"> <!-- Cambia a la ruta correcta -->
+            <form method="POST" action="send_contact"> <!-- Cambia a la ruta correcta -->
                 <div class="form-group mb-4"> <!-- Margen entre campos -->
                     <label para="name">Nombre</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Tu nombre" required>
