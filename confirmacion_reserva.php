@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Players</title>
@@ -11,8 +11,8 @@
 <body class="d-flex flex-column min-vh-100"> <!-- Flex para mantener el footer al fondo -->
 
     <!-- Navbar -->
-  <!-- Barra de Navegación -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+    <!-- Barra de Navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
         <a class="navbar-brand d-flex align-items-center" href="./">
             <img src="https://assets-global.website-files.com/6127fb2c77e53513fea9657c/612d38df9b48bca5bd62f48b_padel-tech-logo.png" alt="Logo" width="200" height="auto" class="me-2">
         </a>
@@ -24,6 +24,7 @@
                 <li class="nav-item">
                     <a class="nav-link">
                         <?php
+                        session_start();
                         if (isset($_SESSION["username"])) {
                             echo $_SESSION["username"];
                         } ?></a>
@@ -46,7 +47,6 @@
             </ul>
         </div>
     </nav>
-
     <!-- Jumbotron -->
     <div class="jumbotron text-center">
         <div class="overlay"></div>
@@ -67,23 +67,6 @@
         </div>
     </div>
 
-    <!-- Modal de éxito -->
-    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel">Reserva Exitosa</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ¡Reserva guardada con éxito!
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="footer bg-dark text-center text-white p-4">
@@ -97,4 +80,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/players.js"></script> <!-- Archivo para control de JavaScript -->
 </body>
+
 </html>
