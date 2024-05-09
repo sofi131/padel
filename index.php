@@ -1,7 +1,7 @@
 <?php
 // Conexión a la base de datos
 include("conexion.php");
-
+session_start();
 // Obtener todas las canchas de la base de datos
 $sql = "SELECT * FROM court";
 $query = $conn->prepare($sql);
@@ -31,6 +31,14 @@ $results = $query->fetchAll(PDO::FETCH_ASSOC);
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link">
+                    <?php 
+                    if(isset($_SESSION["username"])) {
+                        echo $_SESSION["username"];
+                    } ?></a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="players.php">Players</a>
                 </li>

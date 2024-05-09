@@ -17,9 +17,9 @@ if (isset($_POST["email"])) {
         
         // Si el usuario es encontrado, inicia la sesión y redirige
         if ($stm->rowCount() > 0) {
-            $result = $stm->fetchAll(PDO::FETCH_ASSOC);
-            $username = $result[0]["username"];
-            $iduser = $result[0]["iduser"];
+            $result = $stm->fetch(PDO::FETCH_ASSOC);
+            $username = $result["username"];
+            $iduser = $result["iduser"];
             
             $_SESSION["username"] = $username;
             $_SESSION["iduser"] = $iduser;
