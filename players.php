@@ -86,6 +86,10 @@ if (!isset($_SESSION["idreserva"])) {
                         <label for="username3">Nombre jugador 3:</label>
                         <input type="text" name="username" placeholder="Nombre" required>
                     </div>
+                    <div class="player mb-3">
+                        <label for="username4">Nombre jugador 4:</label>
+                        <input type="text" name="username" placeholder="Nombre" required>
+                    </div>
                     <!-- Botones con margen superior -->
                     <div class="mt-4"> <!-- Margen superior -->
                         <!-- Botón que activa el modal -->
