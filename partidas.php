@@ -42,9 +42,9 @@ $pistas = $stm->fetchAll(PDO::FETCH_ASSOC);
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto"> <!-- Menú alineado a la derecha -->
-                <li class="nav-item"><a class="nav-link" href="./">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link" href="partidas">Players</a></li>
+            <li class="nav-item"><a class="nav-link" href="partidas">Partidas</a></li>
                 <li class="nav-item"><a class="nav-link" href="mis_reservas">Mis reservas</a></li>
+                <li class="nav-item"><a class="nav-link" href="usuario">Usuario</a></li>
                 <li class="nav-item"><a class="nav-link" href="contacto">Contacto</a></li>
             </ul>
         </div>

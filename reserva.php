@@ -70,7 +70,7 @@ $result = $stm->fetchAll(PDO::FETCH_ASSOC);
                     } ?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="partidas">Players</a>
+                    <a class="nav-link" href="partidas">Partidas</a>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="mis_reservas">Mis reservas</a></li>
                 <li class="nav-item">

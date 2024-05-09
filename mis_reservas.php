@@ -78,7 +78,7 @@ $reservations = $query_reservations->fetchAll(PDO::FETCH_ASSOC);
                             echo $_SESSION["username"];
                         } ?></a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="partidas">Players</a></li>
+                <li class="nav-item"><a class="nav-link" href="partidas">Partidas</a></li>
                 <li class="nav-item"><a class="nav-link" href="mis_reservas">Mis reservas</a></li>
                 <li class="nav-item"><a class="nav-link" href="usuario">Usuario</a></li>
                 <li class="nav-item"><a class="nav-link" href="contacto">Contacto</a></li>
