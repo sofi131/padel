@@ -36,30 +36,30 @@
         </div>
     </div>
 
-    <!-- Formulario de contacto -->
-    <div class="flex-grow-1 d-flex justify-content-center align-items-center"> <!-- Centro horizontal y vertical -->
+    <!-- Formulario de contacto con espacios arriba y abajo -->
+    <div class="flex-grow-1 d-flex justify-content-center align-items-center" style="padding: 40px 0;"> <!-- Agregar margen vertical -->
         <div class="col-md-6"> <!-- Ancho del formulario -->
             <h3 class="text-center">Formulario de Contacto</h3> <!-- Título para el formulario -->
             <form method="POST" action="send_contact.php"> <!-- Cambia a la ruta correcta -->
-                <div class="form-group mb-3"> <!-- Margen entre campos -->
-                    <label for="name">Nombre</label>
+                <div class="form-group mb-4"> <!-- Margen entre campos -->
+                    <label para="name">Nombre</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Tu nombre" required>
                 </div>
-                <div class="form-group mb-3"> <!-- Margen entre campos -->
+                <div class="form-group mb-4"> <!-- Margen entre campos -->
                     <label para="email">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Tu correo electrónico" required>
+                    <input type="email" class="form-control" id="email" name="email" required>
                 </div>
-                <div class="form-group mb-3"> <!-- Margen entre campos -->
+                <div class="form-group mb-4"> <!-- Margen entre campos -->
                     <label para="subject">Asunto</label>
-                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Asunto" required>
+                    <input type="text" class="form-control" id="subject" name="subject" required>
                 </div>
-                <div class="form-group mb-3"> <!-- Margen entre campos -->
+                <div class="form-group mb-4"> <!-- Margen entre campos -->
                     <label para="message">Mensaje</label>
                     <textarea class="form-control" id="message" name="message" rows="5" placeholder="Escribe tu mensaje aquí" required></textarea>
                 </div>
                
                 <!-- Botón para enviar el formulario con margen -->
-                <button type="submit" class="btn btn-primary mt-3" style="background-color: #CAD021; color: white;">Enviar</button>
+                <button type="submit" class="btn btn-primary mt-4" style="background-color: #CAD021; color: white;">Enviar</button>
             </form>
         </div>
     </div>
