@@ -5,34 +5,33 @@ if (isset($_POST["fecha"])) {
     $_SESSION["fecha"] =  $_POST["fecha"];
     $_SESSION["opcion"] = $_POST["opcion"];
 }
+var_dump($_SESSION["idreserva"]);
 
-if (!isset($_SESSION["idreserva"])) {
-    if (isset($_SESSION['fecha']) && isset($_SESSION["opcion"])) {
-        $fecha = $_SESSION["fecha"];
-        $idtime = $_SESSION["opcion"];
-        $idpista = $_SESSION["idpista"];
-       
-        $sql_reserva = "insert into reservation (idtimetable,idcourt,playdate) values (?,?,?)";
-        $result = $conn->prepare($sql_reserva);
-        $result->bindParam(1, $idtime);
-        $result->bindParam(2, $idpista);
-        $result->bindParam(3, $fecha);
-        $result->execute();
-        if ($result->rowCount() == 1) {
-            $idreserva = $conn->lastInsertId();
-            $_SESSION["idreserva"] = $idreserva;
-            echo 'salio bien';
-        } else {
-            echo 'salio mal';
-        }
+
+if (isset($_SESSION['fecha']) && isset($_SESSION["opcion"])) {
+    $fecha = $_SESSION["fecha"];
+    $idtime = $_SESSION["opcion"];
+    $idpista = $_SESSION["idpista"];
+
+    $sql_reserva = "insert into reservation (idtimetable,idcourt,playdate) values (?,?,?)";
+    $result = $conn->prepare($sql_reserva);
+    $result->bindParam(1, $idtime);
+    $result->bindParam(2, $idpista);
+    $result->bindParam(3, $fecha);
+    $result->execute();
+    if ($result->rowCount() == 1) {
+        $idreserva = $conn->lastInsertId();
+        $_SESSION["idreserva"] = $idreserva;
+        echo 'salio bien';
+    } else {
+        echo 'salio mal';
     }
-} else {
-    $idreserva = $_SESSION["idreserva"];
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Players</title>
@@ -130,4 +129,5 @@ if (!isset($_SESSION["idreserva"])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/players.js"></script> <!-- Archivo para control de JavaScript -->
 </body>
+
 </html>

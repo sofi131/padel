@@ -19,6 +19,23 @@ $stm = $conn->prepare($sql_pistas);
 $stm->execute();
 $pistas = $stm->fetchAll(PDO::FETCH_ASSOC);
 
+if(isset($_POST["idreserva"])){
+    $idreserva = $_POST ["idreserva"];
+    $username = $_POST["user"];
+    $iduser = $_SESSION["iduser"];
+    $sql = "insert into play (iduser,idreservation,username) values (?,?,?)";
+    $stm = $conn->prepare($sql);
+    $stm->bindParam(1,$iduser);
+    $stm->bindParam(2,$idreserva);
+    $stm->bindParam(3,$username);
+    $stm->execute();
+    if($stm->rowCount() > 0){
+        echo "pudiste meterte a la pista";
+    }else{
+        echo "no pudiste entrar a la pista";
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
