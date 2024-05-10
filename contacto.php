@@ -58,7 +58,7 @@
     <!-- Formulario de contacto con espacios arriba y abajo -->
     <div class="flex-grow-1 d-flex justify-content-center align-items-center" style="padding: 40px 0;"> <!-- Agregar margen vertical -->
         <div class="col-md-6"> <!-- Ancho del formulario -->
-            <h3 class="text-center">Formulario de Contacto</h3> <!-- Título para el formulario -->
+            <h2 class="text-center">Formulario de Contacto</h2> <!-- Título para el formulario -->
             <form method="POST" action="send_contact"> <!-- Cambia a la ruta correcta -->
                 <div class="form-group mb-4"> <!-- Margen entre campos -->
                     <label para="name">Nombre</label>

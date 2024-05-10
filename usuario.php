@@ -92,7 +92,7 @@ if (isset($_POST["username"])) {
     <!-- Formulario para actualizar datos del usuario -->
     <div class="flex-grow-1 d-flex justify-content-center align-items-center"> <!-- Centro horizontal y vertical -->
         <div class="col-md-6"> <!-- Ancho del formulario -->
-            <h3 class="text-center">Tus datos de usuario</h3> <!-- Título para el formulario -->
+            <h2 class="text-center">Tus datos de usuario</h2> <!-- Título para el formulario -->
             <form method="POST" action=""> <!-- Cambia a la ruta correcta -->
                 <div class="form-group mb-3"> <!-- Margen entre campos -->
                     <label for="username">Nombre de Usuario</label>
