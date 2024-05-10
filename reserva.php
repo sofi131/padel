@@ -80,6 +80,9 @@ $result = $stm->fetchAll(PDO::FETCH_ASSOC);
                 <li class="nav-item">
                     <a class="nav-link" href="contacto">Contacto</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.php"><i class="fas fa-sign-out-alt"></i> Salir</a> <!-- Enlace para cerrar sesión -->
+                </li>
             </ul>
         </div>
     </nav>
