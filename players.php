@@ -5,7 +5,7 @@ if (isset($_POST["fecha"])) {
     $_SESSION["fecha"] =  $_POST["fecha"];
     $_SESSION["opcion"] = $_POST["opcion"];
 }
-var_dump($_SESSION["idreserva"]);
+//var_dump($_SESSION["idreserva"]);
 
 
 if (isset($_SESSION['fecha']) && isset($_SESSION["opcion"])) {
@@ -22,9 +22,9 @@ if (isset($_SESSION['fecha']) && isset($_SESSION["opcion"])) {
     if ($result->rowCount() == 1) {
         $idreserva = $conn->lastInsertId();
         $_SESSION["idreserva"] = $idreserva;
-        echo 'salio bien';
+        //echo 'salio bien';
     } else {
-        echo 'salio mal';
+        //echo 'salio mal';
     }
 }
 ?>
