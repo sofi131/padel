@@ -1,21 +1,32 @@
 Login <br>
-![image](https://github.com/sofi131/padel/assets/91051075/9d61e73c-b234-4302-bf4f-7514e5ad55c3)<br>
+![image](https://github.com/sofi131/padel/assets/91051075/6f12da98-9f6a-4aad-943c-38cca3cdf173)
+<br>
 Register <br>
-![image](https://github.com/sofi131/padel/assets/91051075/50fd11da-98c8-4613-8330-df7e05c36c88)<br>
+![image](https://github.com/sofi131/padel/assets/91051075/2482af58-6971-4e42-a1f2-03d25ab7a426)
+<br>
 Inicio <br>
-![image](https://github.com/sofi131/padel/assets/91051075/208985d7-7ab2-4cdc-a7ab-6239ffa35675) <br>
-![image](https://github.com/sofi131/padel/assets/91051075/e2960b39-a93f-4d8d-8573-c1857c0cba5d) <br>
+![image](https://github.com/sofi131/padel/assets/91051075/d7349801-f576-4a66-9c28-70d1d6c36dc5)
+ <br>
+![image](https://github.com/sofi131/padel/assets/91051075/6b4cb7a8-013b-481f-832f-9e9372f5c088)
+ <br>
 Proceso de elegir pista<br>
-![image](https://github.com/sofi131/padel/assets/91051075/0377d66d-0397-4110-8f1b-3eb6addcc464) <br>
+![image](https://github.com/sofi131/padel/assets/91051075/91315802-b0f1-4c1c-9f25-f586308e3d1c)
+ <br>
 Agregar jugadores<br>
-![image](https://github.com/sofi131/padel/assets/91051075/c8bd4956-8448-453d-8582-3560937a46c9) <br>
+![image](https://github.com/sofi131/padel/assets/91051075/5e59fd77-37fd-4390-95cf-9d3533606b7e)
+ <br>
 Reserva confirmada<br>
-![image](https://github.com/sofi131/padel/assets/91051075/4c4a4ca2-cbcf-4dab-8de3-6563da3d2431) <br>
+![image](https://github.com/sofi131/padel/assets/91051075/79c24c00-316c-4404-ada6-ae11b7167734)
+ <br>
 Partidas disponibles<br>
-![image](https://github.com/sofi131/padel/assets/91051075/fd162fbc-382c-463c-9b6a-6a1c3d867958) <br>
+![image](https://github.com/sofi131/padel/assets/91051075/acf12352-13e7-404f-b7f3-59ee0f526bdb)
+ <br>
 Mis reservas<br>
-![image](https://github.com/sofi131/padel/assets/91051075/2b9950c8-b321-4160-bf89-caeb2a502f59) <br>
+![image](https://github.com/sofi131/padel/assets/91051075/24078bad-9cb0-4f58-a513-c653b1433e8a)
+ <br>
 Editar usuario<br>
-![image](https://github.com/sofi131/padel/assets/91051075/585acd60-5a9b-48d8-b849-f846b0132aab) <br>
+![image](https://github.com/sofi131/padel/assets/91051075/b0def1c9-88ee-46a2-a6fb-2098824b7e22)
+ <br>
 Formulario de contacto<br>
-![image](https://github.com/sofi131/padel/assets/91051075/255dcf46-4873-4f3c-ae1c-f43d4ec69ef9) <br>
+![image](https://github.com/sofi131/padel/assets/91051075/2350a845-07df-404f-8271-dfaae9528338)
+ <br>
